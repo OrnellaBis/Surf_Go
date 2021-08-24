@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_08_24_130319) do
+=======
+ActiveRecord::Schema.define(version: 2021_08_23_140940) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_130319) do
     t.index ["user_id"], name: "index_favorite_spots_on_user_id"
   end
 
+<<<<<<< HEAD
   create_table "forecasts", force: :cascade do |t|
     t.float "air_temperature"
     t.date "time"
@@ -46,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_08_24_130319) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+=======
+>>>>>>> master
   create_table "spots", force: :cascade do |t|
     t.string "city_name"
     t.float "latitude"
@@ -65,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_130319) do
     t.string "last_name"
     t.string "first_name"
     t.string "password"
+<<<<<<< HEAD
     t.boolean "air_temperature", default: true
     t.boolean "cloud_cover", default: true
     t.boolean "current_direction", default: false
@@ -81,6 +89,8 @@ ActiveRecord::Schema.define(version: 2021_08_24_130319) do
     t.boolean "gust", default: false
     t.boolean "precipitation", default: false
     t.boolean "UV_index", default: false
+=======
+>>>>>>> master
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
