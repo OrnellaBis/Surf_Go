@@ -1,0 +1,11 @@
+<h1>Show</h1>
+
+<ul>
+  <% @all_forecast.each do |key, value| %>
+    <% if @user[key] %>
+    <li> <%=  value %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= console %>

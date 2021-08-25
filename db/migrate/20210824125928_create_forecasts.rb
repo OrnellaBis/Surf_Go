@@ -17,7 +17,7 @@ class CreateForecasts < ActiveRecord::Migration[6.0]
       t.float :wind_speed
       t.float :gust
       t.float :precipitation
-      t.float :UV_index
+      t.float :uv_index
 
       t.timestamps
     end
