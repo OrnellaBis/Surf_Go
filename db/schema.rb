@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_133738) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "last_name"
     t.string "first_name"
-    t.string "password"
     t.boolean "air_temperature", default: true
     t.boolean "cloud_cover", default: true
     t.boolean "current_direction", default: false
