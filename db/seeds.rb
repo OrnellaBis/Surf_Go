@@ -11,7 +11,7 @@ User.destroy_all
 Spot.destroy_all
 
 user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
-spot_1 = Spot.create(city_name:"Hossegor", latitude:43.69, longitude:-1.37) 
+spot_1 = Spot.create(city_name:"Hossegor", latitude:43.69, longitude:-1.37)
 spot_2 = Spot.create(city_name:"Moliets-et-Maa", latitude:43.85, longitude:-1.35)
 spot_3 = Spot.create(city_name:"Hendaye", latitude:43.3667, longitude:-1.7833)
 fav_spot_1 = FavoriteSpot.create(spot: spot_1, user: user)
