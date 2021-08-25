@@ -15,6 +15,6 @@ class AddCollumnToUsers < ActiveRecord::Migration[6.0]
     add_column :users, :wind_speed, :boolean, :default => false
     add_column :users, :gust, :boolean, :default => false
     add_column :users, :precipitation, :boolean, :default => false
-    add_column :users, :UV_index, :boolean, :default => false
+    add_column :users, :uv_index, :boolean, :default => false
   end
 end
