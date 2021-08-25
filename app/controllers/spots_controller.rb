@@ -5,6 +5,13 @@ class SpotsController < ApplicationController
     else
       @spots = Spot.all
     end
+
+    @markers = @spots.map do |spot|
+      {
+        lat: spot.latitude,
+        lng: spot.longitude
+      }
+    end
   end
 
   def show
@@ -50,5 +57,4 @@ class SpotsController < ApplicationController
     }
 
   end
-
 end
