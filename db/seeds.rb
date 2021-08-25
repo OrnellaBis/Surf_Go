@@ -25,3 +25,4 @@ forecast_2 = Forecast.create(air_temperature:35,cloud_cover:30, current_directio
 forecast_3 = Forecast.create(air_temperature:15,cloud_cover:70, current_direction:10, current_speed:3, swell_direction:30,
                             swell_height:2, water_temperature:22, wave_direction:39, wave_height:1, wave_period:11, wind_wave_height:0.01,
                             wind_direction:67, wind_speed:0, gust:10, precipitation:0, uv_index:0.3, spot: spot_3)
+
