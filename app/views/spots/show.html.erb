@@ -1,11 +1,45 @@
-<h1>Show</h1>
+<div class="container">
 
-<ul>
-  <% @all_forecast.each do |key, value| %>
-    <% if @user[key] %>
-    <li> <%=  value %></li>
+  <h1>Show</h1>
+  <h2><%= @spot.city_name %></h2>
+  <div class="big-card">
+    <div class="d-flex align-items-center ml-2">
+      <i class="fas fa-water"></i>
+      <div> 
+        <h6>Hauteur de vague</h6>
+        <p><%= @minimal_forecats[2] %> m</p>
+      </div>
+    </div>
+    <div class="mr-2 mt-3">
+      <div class="d-flex">
+        <i class="fab fa-cloudflare"></i>
+        <div>
+          <h6>Cloud coverage</h6>
+          <p><%= @minimal_forecats[1] %> %</p>
+        </div>
+      </div>
+      <hr>
+      <div class="d-flex">
+        <i class="fas fa-sun"></i>
+        <div>
+          <h6>Température de l'air</h6>
+          <p><%= @minimal_forecats[0] %> °C</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <% @all_forecast.each do |key, value| %>
+      <% if @user[key] %>
+      <div class="card-category" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path("/forecast/#{key.to_s}.jpg") %>)'>
+        <p><%= key.to_s.capitalize %> <%=  value %></p>
+      </div>
+
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </div>
 
-<%= console %>
+  <%= link_to "Add fav spot", spot_favorite_spots_path(@spot), method: :post %>
+</div>
+

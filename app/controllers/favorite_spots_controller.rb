@@ -5,12 +5,10 @@ class FavoriteSpotsController < ApplicationController
 
   def create
     @user = current_user
-    @spot = Spot.find(params[:id])
+    @spot = Spot.find(params[:spot_id])
     @favoritespot = FavoriteSpot.new(user: @user, spot: @spot)
     if @favoritespot.save
-      render "spots_controller/show"
-    else
-      render "spots_controller/show"
+      redirect_to spot_path(@spot)
     end
   end
 
