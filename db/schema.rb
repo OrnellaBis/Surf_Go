@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_133738) do
     t.float "wind_speed"
     t.float "gust"
     t.float "precipitation"
-    t.float "uv_index"
+    t.float "UV_index"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "spot_id", null: false
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_133738) do
     t.boolean "wind_speed", default: false
     t.boolean "gust", default: false
     t.boolean "precipitation", default: false
-    t.boolean "uv_index", default: false
+    t.boolean "UV_index", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
