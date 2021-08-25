@@ -1,0 +1,22 @@
+.navbar-down {
+  background: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar-down .search {
+  display: none;
+  input {
+    background: white;
+  }
+}
+
+.navbar-down .list-inline #search-getter .active {
+  .search {
+    display: block;
+  }
+  .list-inline {
+    display: none;
+  }
+}

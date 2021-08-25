@@ -1,0 +1,32 @@
+
+<div class="navbar-down">
+    <div class="search">
+      <%= form_tag favorite_spots_path, method: :get, class: "form-inline" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "I'm not a searchbar" %>
+      <% end %>
+    </div>
+
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <%= link_to root_path do %>
+          <i class="fas fa-home"></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to favorite_spots_path do %>
+            <i class="fas fa-star"></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to favorite_spots_path do %>
+            <i class="fas fa-sliders-h"></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+          <i class="fas fa-search-location" id="search-getter"></i>
+      </li>
+    </ul>
+</div>

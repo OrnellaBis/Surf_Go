@@ -1,0 +1,9 @@
+<div class="container"><h1>Vos spots préférés</h1>
+  <li>
+    <% @favoritespots.each do |favoritespot| %>
+      <ul>
+        <%= favoritespot.spot.city_name  %>
+      </ul>
+    <% end %>
+  </li>
+</div>

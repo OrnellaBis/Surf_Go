@@ -1,4 +1,12 @@
 class SpotsController < ApplicationController
+  def index
+    if params[:query].present?
+      @spots = Spot.search_by_city(params[:query])
+    else
+      @spots = Spot.all
+    end
+  end
+
   def show
     @spot = Spot.find(params[:id])
     @user = current_user
@@ -42,6 +50,5 @@ class SpotsController < ApplicationController
     }
 
   end
-
 
 end
