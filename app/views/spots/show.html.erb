@@ -62,15 +62,12 @@
           <h2>Mes p&eacute;f&eacute;rences</h2>
           <%= simple_form_for @user do |f| %>
             <div class="m-10">
-              <%= f.input :air_temperature, as: :boolean , label: "Température de l'aire" %>
-              <%= f.input :cloud_cover, as: :boolean , label: "Couverture nuageuse" %>
               <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
               <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
               <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
               <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
               <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
               <%= f.input :wave_direction, as: :boolean, label: "Direction des vauges" %>
-              <%= f.input :wave_height, as: :boolean, label: "Hauteur des vagues" %>
               <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
               <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
               <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
