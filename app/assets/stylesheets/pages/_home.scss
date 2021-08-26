@@ -1,1 +1,55 @@
 // Specific CSS for your home-page
+
+.m-10 {
+  float: left;
+  position: relative;
+  left: -50%;
+}
+
+#edit_user_1 {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+.form-group.boolean.optional {
+  margin-bottom: 0.8rem !important;
+}
+.banner {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  h1 {
+    color: $white;
+  }
+  h2 {
+    color: $white;
+    padding-bottom: 25px;
+  }
+  h3 {
+    color: $white;
+  }
+}
+
+.presentation {
+  width: 100%;
+  padding-bottom: 255px;
+}
+
+.search > form {
+  display: flex;
+
+  input.btn {
+    color: $gray;
+    box-shadow: 0 2px 6px $gray;
+  }
+
+  input.form-control {
+  box-shadow: 0 2px 6px $gray;
+  border: 1px solid $white;
+  }
+}

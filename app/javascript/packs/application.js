@@ -35,3 +35,9 @@ document.addEventListener('turbolinks:load', () => {
   /*   fetchMethode(); */
   toggleSearch();
 });
+
+import { initMapbox } from '../plugins/init_mapbox';
+
+document.addEventListener('turbolinks:load', () => {
+  initMapbox();
+})
