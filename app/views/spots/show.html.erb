@@ -40,9 +40,8 @@
 
   <div class="d-flex justify-content-center">
     <div>
-      <%= link_to edit_user_path(@user) do %>
+      <%# <%= link_to edit_user_path(@user) do %> <%# <% end %>
         <p><i class="fas fa-plus btn btn-primary" id="myBtn"></i></p>
-      <% end %>
       <%= link_to spot_favorite_spots_path(@spot), method: :post, class:"btn btn-primary" do %>
         <p>Add fav spot</p>
       <% end %>
