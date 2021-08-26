@@ -1,9 +1,15 @@
-<div class="container"><h1>Vos spots préférés</h1>
-  <li>
+<div class="fav-spots">
+  <h1 class="text-center">Vos spots préférés</h1>
+  <div class="py-4 px-3">
     <% @favoritespots.each do |favoritespot| %>
-      <ul>
-        <%= favoritespot.spot.city_name  %>
-      </ul>
+      <%= link_to spot_path(favoritespot) do %>
+        <div class="card-product">
+          <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" />
+          <div class="card-product-infos">
+            <h2><%= favoritespot.spot.city_name %></h2>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  </li>
+  </div>
 </div>
