@@ -1,0 +1,25 @@
+.navbar-up {
+  margin-bottom: 10px;
+}
+
+.logo-navbar {
+  height: 70px;
+}
+
+.navbar-up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sign-in {
+  background-color: #e9ecef;
+  border-radius: 15px;
+  color: grey;
+  padding: 8px;
+}
+
+.nav-list {
+  margin-right: 10px;
+  padding-right: 5px;
+}
