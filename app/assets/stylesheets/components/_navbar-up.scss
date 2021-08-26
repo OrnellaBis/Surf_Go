@@ -1,5 +1,6 @@
 .navbar-up {
   margin-bottom: 10px;
+  background: transparent;
 }
 
 .logo-navbar {
@@ -10,6 +11,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  width: 100%;
 }
 
 .sign-in {

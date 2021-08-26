@@ -1,6 +1,6 @@
 const toggleSearch = () => {
   const searchIcon = document.querySelector(".search-getter");
-  const searchBar = document.querySelector(".search");
+  const searchBar = document.querySelector(".navbar-down .search");
   const iconList = document.querySelector(".list-inline");
   searchIcon.addEventListener("click", (event) => {
     event.currentTarget.classList.toggle("active");

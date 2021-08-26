@@ -6,7 +6,7 @@
   </div>
   <div class="nav-list">
     <% if current_user %>
-      <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, class: "sign-in" %>
+      <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "sign-in" %>
     <% else %>
       <%= link_to "Connexion",  new_user_session_path, class: "sign-in" %>
     <% end %>

@@ -21,9 +21,15 @@
         <% end %>
       </li>
       <li class="list-inline-item">
-        <%= link_to favorite_spots_path do %>
-            <i class="fas fa-sliders-h fas-navbar"></i>
+      <% if @user = current_user %>
+        <%= link_to edit_user_path(@user) do %>
+          <i class="fas fa-sliders-h fas-navbar"></i>
         <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+          <i class="fas fa-sliders-h fas-navbar"></i>
+        <% end %>
+      <% end %>
       </li>
       <li class="list-inline-item search-getter">
           <i class="fas fa-search-location fas-navbar"></i>
