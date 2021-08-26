@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
-  def edit
-    @user = current_user
-  end
 
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to edit_user_path(@user)
+      redirect_to spot_path(params[:user][:spot_id])
     else
       render :edit
     end
