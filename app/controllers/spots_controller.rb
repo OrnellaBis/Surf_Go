@@ -1,4 +1,6 @@
 class SpotsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index ]
+
   def index
     if params[:query].present?
       @spots = Spot.search_by_city(params[:query])
@@ -36,17 +38,15 @@ class SpotsController < ApplicationController
     @precipitation = @forecast.precipitation
     @uv_index = @forecast.uv_index
 
+    @minimal_forecats = [@air_temperature, @cloud_cover, @wave_height]
     @all_forecast =
       {
-      air_temperature: @air_temperature,
-      cloud_cover: @cloud_cover,
       current_direction: @current_direction,
       current_speed: @current_speed,
       swell_direction: @swell_direction,
       swell_height: @swell_height,
       water_temperature: @water_temperature,
       wave_direction: @wave_direction,
-      wave_height: @wave_height,
       wave_period: @wave_period,
       wind_wave_height: @wind_wave_height,
       wind_direction: @wind_direction,

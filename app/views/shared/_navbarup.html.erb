@@ -1,0 +1,14 @@
+<div class="navbar-up">
+  <div>
+    <%= link_to root_path do %>
+      <img src="<%= image_path("logo/logo.jpg")%>" class="logo-navbar"/>
+    <% end %>
+  </div>
+  <div class="nav-list">
+    <% if current_user %>
+      <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "sign-in" %>
+    <% else %>
+      <%= link_to "Connexion",  new_user_session_path, class: "sign-in" %>
+    <% end %>
+  </div>
+</div>

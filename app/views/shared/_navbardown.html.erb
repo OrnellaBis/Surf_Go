@@ -1,0 +1,38 @@
+
+<div class="navbar-down">
+    <div class="search">
+      <%= form_tag favorite_spots_path, method: :get, class: "form-inline" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control search-border",
+          placeholder: "Chercher un spot" %>
+      <% end %>
+    </div>
+
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <%= link_to root_path do %>
+          <i class="fas fa-home fas-navbar"></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to favorite_spots_path do %>
+            <i class="fas fa-star fas-navbar"></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+      <% if @user = current_user %>
+        <%= link_to edit_user_path(@user) do %>
+          <i class="fas fa-sliders-h fas-navbar"></i>
+        <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+          <i class="fas fa-sliders-h fas-navbar"></i>
+        <% end %>
+      <% end %>
+      </li>
+      <li class="list-inline-item search-getter">
+          <i class="fas fa-search-location fas-navbar"></i>
+      </li>
+    </ul>
+</div>
