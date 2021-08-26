@@ -1,13 +1,17 @@
 const toggleSearch = () => {
-  const searchBar = document.querySelector("#search-getter");
-  searchBar.addEventListener("click", (event) => {
+  const searchIcon = document.querySelector(".search-getter");
+  const searchBar = document.querySelector(".search");
+  const iconList = document.querySelector(".list-inline");
+  searchIcon.addEventListener("click", (event) => {
     event.currentTarget.classList.toggle("active");
-    console.log(searchBar);
+    searchBar.style.display = 'block';
+    iconList.style.display = 'none';
   });
   const mainWrapper = document.querySelector(".main-wrapper");
   mainWrapper.addEventListener("click", (event) => {
     event.currentTarget.classList.toggle("active");
-    console.log(mainWrapper);
+    searchBar.style.display = 'none';
+    iconList.style.display = 'flex';
     // je remove la classe active sur navbar-down
   })
 
