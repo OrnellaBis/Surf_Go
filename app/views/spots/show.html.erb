@@ -1,11 +1,80 @@
-<h1>Show</h1>
-
-<ul>
+<div class="container">
+  <h1 class="mt-4"><%= @spot.city_name %></h1>
+  <div class="big-card mt-5">
+    <div class="d-flex align-items-center ml-2">
+      <i class="fas fa-water"></i>
+      <div> 
+        <h6>Hauteur de vague</h6>
+        <p><%= @minimal_forecats[2] %> m</p>
+      </div>
+    </div>
+    <div class="mr-2 mt-3">
+      <div class="d-flex">
+        <i class="fab fa-cloudflare"></i>
+        <div>
+          <h6>Cloud coverage</h6>
+          <p><%= @minimal_forecats[1] %> %</p>
+        </div>
+      </div>
+      <hr>
+      <div class="d-flex">
+        <i class="fas fa-sun"></i>
+        <div>
+          <h6>Température de l'air</h6>
+          <p><%= @minimal_forecats[0] %> °C</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <% @all_forecast.each do |key, value| %>
     <% if @user[key] %>
-    <li> <%=  value %></li>
+      <div class="card-product">
+        <%= image_tag("forecast/#{key.to_s}.jpg") %>
+        <div class="card-product-infos">
+              <h2><%= key.to_s.capitalize %></h2>
+              <p><strong> <%=  value %></strong></p>
+        </div>
+      </div>
     <% end %>
   <% end %>
-</ul>
 
-<%= console %>
+  <div class="d-flex justify-content-center">
+    <div>
+      <%= link_to edit_user_path(@user) do %>
+        <p><i class="fas fa-plus btn btn-primary" id="myBtn"></i></p>
+      <% end %>
+      <%= link_to spot_favorite_spots_path(@spot), method: :post, class:"btn btn-primary" do %>
+        <p>Add fav spot</p>
+      <% end %>
+      
+    </div>
+  </div>
+
+    <div id="myModal" class="modal">
+
+      <h1>Edit user</h1>
+      <h2>Mes p&eacute;f&eacute;rences</h2>
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :air_temperature, as: :boolean %>
+        <%= f.input :cloud_cover, as: :boolean %>
+        <%= f.input :current_direction, as: :boolean %>
+        <%= f.input :current_speed, as: :boolean %>
+        <%= f.input :swell_direction, as: :boolean %>
+        <%= f.input :swell_height, as: :boolean %>
+        <%= f.input :water_temperature, as: :boolean %>
+        <%= f.input :wave_direction, as: :boolean %>
+        <%= f.input :wave_height, as: :boolean %>
+        <%= f.input :wave_period, as: :boolean %>
+        <%= f.input :wind_wave_height, as: :boolean %>
+        <%= f.input :wind_direction, as: :boolean %>
+        <%= f.input :wind_speed, as: :boolean %>
+        <%= f.input :gust, as: :boolean %>
+        <%= f.input :precipitation, as: :boolean %>
+        <%= f.input :uv_index, as: :boolean %>
+        <%= f.button :submit, class: "btn btn-primary close" %>
+      <% end %>
+
+    </div>
+  
+</div>
+
