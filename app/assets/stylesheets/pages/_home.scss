@@ -1,5 +1,19 @@
 // Specific CSS for your home-page
 
+.m-10 {
+  float: left;
+  position: relative;
+  left: -50%;
+}
+
+#edit_user_1 {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+.form-group.boolean.optional {
+  margin-bottom: 0.8rem !important;
 
 .banner {
     background-position: center;
