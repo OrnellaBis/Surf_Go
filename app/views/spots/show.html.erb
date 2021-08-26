@@ -28,7 +28,7 @@
   </div>
   <% @all_forecast.each do |key, value| %>
     <% if @user[key] %>
-      <div class="card-product">
+      <div class="card-product mt-2">
         <%= image_tag("forecast/#{key.to_s}.jpg") %>
         <div class="card-product-infos">
               <h2><%= key.to_s.capitalize %></h2>
@@ -40,8 +40,7 @@
 
   <div class="d-flex justify-content-center">
     <div>
-      <%# <%= link_to edit_user_path(@user) do %> <%# <% end %>
-        <p><i class="fas fa-plus btn btn-primary" id="myBtn"></i></p>
+      <p style="text-align: center;"><i class="fas fa-plus btn btn-primary mt-5" id="myBtn" data-toggle="modal", data-target="#exampleModal" ></i></p>
       <%= link_to spot_favorite_spots_path(@spot), method: :post, class:"btn btn-primary" do %>
         <p>Add fav spot</p>
       <% end %>
@@ -49,31 +48,50 @@
     </div>
   </div>
 
-    <div id="myModal" class="modal">
-
-      <h1>Edit user</h1>
-      <h2>Mes p&eacute;f&eacute;rences</h2>
-      <%= simple_form_for @user do |f| %>
-        <%= f.input :air_temperature, as: :boolean %>
-        <%= f.input :cloud_cover, as: :boolean %>
-        <%= f.input :current_direction, as: :boolean %>
-        <%= f.input :current_speed, as: :boolean %>
-        <%= f.input :swell_direction, as: :boolean %>
-        <%= f.input :swell_height, as: :boolean %>
-        <%= f.input :water_temperature, as: :boolean %>
-        <%= f.input :wave_direction, as: :boolean %>
-        <%= f.input :wave_height, as: :boolean %>
-        <%= f.input :wave_period, as: :boolean %>
-        <%= f.input :wind_wave_height, as: :boolean %>
-        <%= f.input :wind_direction, as: :boolean %>
-        <%= f.input :wind_speed, as: :boolean %>
-        <%= f.input :gust, as: :boolean %>
-        <%= f.input :precipitation, as: :boolean %>
-        <%= f.input :uv_index, as: :boolean %>
-        <%= f.button :submit, class: "btn btn-primary close" %>
-      <% end %>
-
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h1>Edit user</h1>
+          <h2>Mes p&eacute;f&eacute;rences</h2>
+          <%= simple_form_for @user do |f| %>
+            <div class="m-10">
+              <%= f.input :air_temperature, as: :boolean , label: "Température de l'aire" %>
+              <%= f.input :cloud_cover, as: :boolean , label: "Couverture nuageuse" %>
+              <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
+              <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
+              <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
+              <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
+              <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
+              <%= f.input :wave_direction, as: :boolean, label: "Direction des vauges" %>
+              <%= f.input :wave_height, as: :boolean, label: "Hauteur des vagues" %>
+              <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
+              <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
+              <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
+              <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
+              <%= f.input :gust, as: :boolean, label: "Raffale" %>
+              <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
+              <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
+              <%= f.hidden_field   :spot_id, :value => @spot.id %>
+              <div class="text-center mb-3">
+                <%= f.button :submit, class: "btn btn-dark" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
+  </div>
+
   
 </div>
 
