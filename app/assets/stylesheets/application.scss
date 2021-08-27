@@ -14,6 +14,16 @@
 
 
 .main-wrapper {
-  height: 93vh;
+  min-height: 93vh;
+  margin-bottom: 7vh;
   position: relative;
+  background-color: $dark_blue;
+}
+
+body {
+  color: #3a6881;
+}
+
+h1 {
+  color: white;
 }

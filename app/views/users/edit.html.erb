@@ -1,11 +1,7 @@
-<div>
-  <hgroup class="text-center">
-    <h2><strong>Surf go</strong></h2>
-    <h3>Mes p&eacute;f&eacute;rences</h3>
-  </hgroup>
-
-  <%= simple_form_for @user do |f| %>
-    <div class="m-10">
+<div class="container">
+  <h1>Mes préférences</h1>
+  <div class="form-container">
+    <%= simple_form_for @user do |f| %>
       <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
       <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
       <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
@@ -16,13 +12,12 @@
       <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
       <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
       <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
-      <%= f.input :gust, as: :boolean, label: "Rafales jusqu'à" %>
+      <%= f.input :gust, as: :boolean, label: "Rafales" %>
       <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
       <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
       <div class="text-center mb-3">
-        <%= f.button :submit, class: "btn btn-dark" %>
+        <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
       </div>
-    </div>
-  <% end %>
-
+    <% end %>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 
 <div class="navbar-down">
     <div class="search">
-      <%= form_tag favorite_spots_path, method: :get, class: "form-inline" do %>
+      <%= form_tag spots_path, method: :get, class: "form-inline" do %>
         <%= text_field_tag :query,
           params[:query],
           class: "form-control search-border",
@@ -17,7 +17,7 @@
       </li>
       <li class="list-inline-item">
         <%= link_to favorite_spots_path do %>
-            <i class="fas fa-star fas-navbar"></i>
+            <i class="far fa-heart fas-navbar"></i>
         <% end %>
       </li>
       <li class="list-inline-item">
