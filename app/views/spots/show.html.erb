@@ -94,6 +94,7 @@
       <%= f.input :gust, as: :boolean, label: "Rafales" %>
       <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
       <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
+      <%= f.hidden_field :spot_id, :value => @spot.id %>
       <div class="text-center mb-3">
         <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
       </div>
