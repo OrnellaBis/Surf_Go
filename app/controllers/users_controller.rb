@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to spot_path(params[:user][:spot_id])
+      if params[:user][:spot_id] == nil
+        redirect_to favorite_spots_path(@user)
+      else
+        redirect_to spot_path(params[:user][:spot_id])
+      end
     else
       render :edit
     end
