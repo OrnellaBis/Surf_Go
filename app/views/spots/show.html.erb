@@ -1,9 +1,24 @@
 <div class="container">
-  <h1 class="mt-4"><%= @spot.city_name %></h1>
-  <div class="big-card mt-5">
+  <h1 class="city-show"><%= @spot.city_name %></h1>
+  <div class="day-container">
+  <ul class="day-list">
+  <li id="today"> Aujourd'hui</li>
+  <li> Demain</li>
+  </ul>
+  <ul class="hour-list">
+  <li> Mtn</li>
+  <li> 12h</li>
+  <li> 13h</li>
+  <li> 14h</li>
+  <li> 15h</li>
+  <li> 16h</li>
+  <li> 17h</li>
+  </ul>
+  <div class= "card-forecast-container">
+  <div class="big-card">
     <div class="d-flex align-items-center ml-2">
       <i class="fas fa-water"></i>
-      <div> 
+      <div>
         <h6>Hauteur de vague</h6>
         <p><%= @minimal_forecats[2] %> m</p>
       </div>
@@ -26,17 +41,20 @@
       </div>
     </div>
   </div>
+  <div class="card-grid-forecast">
   <% @all_forecast.each do |key, value| %>
     <% if @user[key] %>
-      <div class="card-product mt-2">
-        <%= image_tag("forecast/#{key.to_s}.jpg") %>
+      <div class="card-product forecast mt-2">
         <div class="card-product-infos">
-              <h2><%= key.to_s.capitalize %></h2>
+              <h2><%= @label_forecast[key] %></h2>
               <p><strong> <%=  value %></strong></p>
         </div>
       </div>
     <% end %>
   <% end %>
+  </div>
+
+
 
   <div class="d-flex justify-content-center">
     <div>
@@ -44,22 +62,22 @@
       <%= link_to spot_favorite_spots_path(@spot), method: :post, class:"btn btn-primary" do %>
         <p>Add fav spot</p>
       <% end %>
-      
+
     </div>
+  </div>
   </div>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Modifier mes préférences</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <h1>Edit user</h1>
-          <h2>Mes p&eacute;f&eacute;rences</h2>
+          <h1>Mes critères personnalisés</h1>
           <%= simple_form_for @user do |f| %>
             <div class="m-10">
               <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
@@ -67,12 +85,12 @@
               <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
               <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
               <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
-              <%= f.input :wave_direction, as: :boolean, label: "Direction des vauges" %>
+              <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
               <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
               <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
               <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
               <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
-              <%= f.input :gust, as: :boolean, label: "Raffale" %>
+              <%= f.input :gust, as: :boolean, label: "Rafale" %>
               <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
               <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
               <%= f.hidden_field   :spot_id, :value => @spot.id %>
@@ -89,6 +107,5 @@
     </div>
   </div>
 
-  
 </div>
-
+</div>

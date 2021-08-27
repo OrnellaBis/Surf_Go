@@ -1,7 +1,7 @@
 <div>
   <hgroup class="text-center">
     <h2><strong>Surf go</strong></h2>
-    <h3>Mes p&eacute;f&eacute;rences</h3>
+    <h3>Mes préférences</h3>
   </hgroup>
 
   <%= simple_form_for @user do |f| %>
@@ -16,7 +16,7 @@
       <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
       <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
       <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
-      <%= f.input :gust, as: :boolean, label: "Rafales jusqu'à" %>
+      <%= f.input :gust, as: :boolean, label: "Rafales" %>
       <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
       <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
       <div class="text-center mb-3">

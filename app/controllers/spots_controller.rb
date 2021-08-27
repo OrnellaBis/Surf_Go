@@ -39,6 +39,21 @@ class SpotsController < ApplicationController
     @uv_index = @forecast.uv_index
 
     @minimal_forecats = [@air_temperature, @cloud_cover, @wave_height]
+    @label_forecast = {
+      current_direction: "Direction du courant",
+      current_speed: "Vitesse du courant",
+      swell_direction: "Direction de la houle",
+      swell_height: "Hauteur de la houle",
+      water_temperature: "Température de l'eau",
+      wave_direction: "Direction des vagues",
+      wave_period: "Période entre les vagues",
+      wind_wave_height: "Hauteur des vagues en fonction du vent",
+      wind_direction: "Direction du vent",
+      wind_speed: "Vitesse des vents",
+      gust: "Rafales",
+      precipitation: "Précipitations",
+      uv_index: "Index UV",
+    }
     @all_forecast =
       {
       current_direction: @current_direction,
