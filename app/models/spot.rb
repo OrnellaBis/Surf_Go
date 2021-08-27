@@ -5,4 +5,6 @@ class Spot < ApplicationRecord
     include PgSearch::Model
     pg_search_scope :search_by_city,
       against: [ :city_name]
+
+  geocoded_by :city_name
 end
