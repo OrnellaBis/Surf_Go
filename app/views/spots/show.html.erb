@@ -1,6 +1,6 @@
 <div class="container">
 <div class="add-favorite-spot">
-  <h1 class="city-show"><%= @spot.city_name %></h1>
+  <h1 class="city-show"><%= @spot.city_name %> <%= @conditions %></h1>
   <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
         <p><i class= "fas fa-heart <%= "active" if @spot.liked?(@user) %>" id="white-heart"></i></p>
       <% end %>
