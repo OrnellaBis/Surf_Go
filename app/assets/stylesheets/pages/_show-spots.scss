@@ -48,3 +48,19 @@ li {
 .card-forecast-container {
   padding: 15px;
 }
+
+.add-favorite-spot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#white-heart {
+ font-size: 25px;
+ color: white;
+ margin-left: 20px;
+ padding-top: 15px;
+ &.active {
+  color: red;
+ }
+}

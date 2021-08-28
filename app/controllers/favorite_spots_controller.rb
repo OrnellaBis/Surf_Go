@@ -6,10 +6,14 @@ class FavoriteSpotsController < ApplicationController
   def create
     @user = current_user
     @spot = Spot.find(params[:spot_id])
-    @favoritespot = FavoriteSpot.new(user: @user, spot: @spot)
-    if @favoritespot.save
-      redirect_to spot_path(@spot)
+    @favoritespot = FavoriteSpot.find_by(user: @user, spot: @spot)
+    if @favoritespot
+      @favoritespot.destroy
+    else
+      FavoriteSpot.create(user: @user, spot: @spot)
     end
+    redirect_to request.referrer
+
   end
 
   def destroy
