@@ -1,4 +1,6 @@
 require 'json'
+require 'open-uri'
+require 'rest-client'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -11,8 +13,7 @@ Forecast.destroy_all
 User.destroy_all
 Spot.destroy_all
 
-
-filepath = '/home/xinul/code/Surf_Go/db/spots.json'
+filepath = '/Users/fzaamrane/code/OrnellaBis/Surf_Go/db/spots.json'
 serialized_spot = File.read(filepath)
 data = JSON.parse(serialized_spot)
 
@@ -20,10 +21,45 @@ data = JSON.parse(serialized_spot)
   city_name = data["data"]["spots"][i]["name"]
   latitude = data["data"]["spots"][i]["lat"]
   longitude = data["data"]["spots"][i]["lon"]
-  Spot.create(city_name: city_name, longitude: longitude, latitude: latitude)
+  spot = Spot.new(city_name: city_name, longitude: longitude, latitude: latitude)
+  spot.save!
+
+  api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
+    headers={
+      'Authorization': '167e7c66-03fb-11ec-bc94-0242ac130002-167e7cde-03fb-11ec-bc94-0242ac130002',
+        params:
+        {
+          lat: spot.latitude,
+          lng: spot.longitude,
+          params: "airTemperature,cloudCover,currentDirection,currentSpeed,gust,precipitation,swellDirection,swellHeight,waterTemperature,waveDirection,waveHeight,windWaveHeight,windDirection,windSpeed,wavePeriod"
+        }
+    }
+  )
+
+  data_forecast = JSON.parse(api_response)
+
+  air_temperature = data_forecast["hours"][12]["airTemperature"]["dwd"]
+  cloud_cover =  data_forecast["hours"][12]["cloudCover"]["dwd"]
+  current_direction = data_forecast["hours"][12]["currentDirection"]["meteo"]
+  current_speed = data_forecast["hours"][12]["currentSpeed"]["meteo"]
+  gust = data_forecast["hours"][12]["gust"]["dwd"]
+  precipitation = data_forecast["hours"][12]["precipitation"]["dwd"]
+  swell_direction = data_forecast["hours"][12]["swellDirection"]["dwd"]
+  swell_height = data_forecast["hours"][12]["swellHeight"]["dwd"]
+  water_temperature = data_forecast["hours"][12]["waterTemperature"]["meteo"]
+  wave_direction = data_forecast["hours"][12]["waveDirection"]["meteo"]
+  wave_height = data_forecast["hours"][12]["waveHeight"]["dwd"]
+  wave_period = data_forecast["hours"][12]["wavePeriod"]["icon"]
+  wind_wave_height = data_forecast["hours"][12]["windWaveHeight"]["dwd"]
+  wind_direction = data_forecast["hours"][12]["windDirection"]["icon"]
+  wind_speed = data_forecast["hours"][12]["windSpeed"]["icon"]
+  forecast = Forecast.new(air_temperature: air_temperature,cloud_cover: cloud_cover, current_direction: current_direction, current_speed: current_speed, swell_direction: swell_direction,
+                          swell_height: swell_height, water_temperature: water_temperature, wave_direction: wave_direction, wave_height: wave_height, wave_period: wave_period, wind_wave_height: wind_wave_height,
+                          wind_direction: wind_direction, wind_speed: wind_speed, gust: gust, precipitation: precipitation, uv_index:0.8, spot: spot)
+  forecast.save!
 end
 
-user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
+# user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
 
 
 # spot_1 = Spot.create(city_name:"Hossegor", latitude:43.69, longitude:-1.37)

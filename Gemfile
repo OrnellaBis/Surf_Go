@@ -33,6 +33,9 @@ gem 'devise'
 # search gem
 gem 'pg_search'
 
+# ruby passing headers to api request
+gem 'rest-client'
+
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
