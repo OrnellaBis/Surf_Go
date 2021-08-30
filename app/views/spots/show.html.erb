@@ -1,5 +1,10 @@
 <div class="container">
+<div class="add-favorite-spot">
   <h1 class="city-show"><%= @spot.city_name %></h1>
+  <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
+        <p><i class= "fas fa-heart <%= "active" if @spot.liked?(@user) %>" id="white-heart"></i></p>
+      <% end %>
+</div>
   <div class="day-container">
   <ul class="day-list">
   <li id="today"> Aujourd'hui</li>
@@ -59,10 +64,6 @@
   <div class="d-flex justify-content-center">
     <div>
       <p style="text-align: center;"><i class="fas fa-plus btn btn-primary mt-5" id="myBtn" data-toggle="modal", data-target="#exampleModal" ></i></p>
-      <%= link_to spot_favorite_spots_path(@spot), method: :post, class:"btn btn-primary" do %>
-        <p>Add fav spot</p>
-      <% end %>
-
     </div>
   </div>
   </div>
@@ -96,7 +97,7 @@
       <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
       <%= f.hidden_field :spot_id, :value => @spot.id %>
       <div class="text-center mb-3">
-        <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
+      <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
       </div>
     <% end %>
   </div>

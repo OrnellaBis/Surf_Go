@@ -26,7 +26,7 @@ data = JSON.parse(serialized_spot)
 
   api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
     headers={
-      'Authorization': '167e7c66-03fb-11ec-bc94-0242ac130002-167e7cde-03fb-11ec-bc94-0242ac130002',
+      'Authorization': '28ffecb6-0730-11ec-8904-0242ac130002-28ffed60-0730-11ec-8904-0242ac130002',
         params:
         {
           lat: spot.latitude,
@@ -59,7 +59,7 @@ data = JSON.parse(serialized_spot)
   forecast.save!
 end
 
-# user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
+user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
 
 
 # spot_1 = Spot.create(city_name:"Hossegor", latitude:43.69, longitude:-1.37)

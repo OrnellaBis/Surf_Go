@@ -2,8 +2,14 @@ class SpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
 
   def index
+    @user= current_user
     if params[:query].present?
-      @spots = Spot.search_by_city(params[:query])
+      @user_input = params[:query]
+      if @user_input.capitalize == "Hossegor"
+        @user_input="Soorts-hossegor"
+      end
+      city_lat_long = Geocoder.search(@user_input).first.coordinates
+      @spots = Spot.near([city_lat_long[0], city_lat_long[1]], 10)
     else
       @spots = Spot.all
     end
