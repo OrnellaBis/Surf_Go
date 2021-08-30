@@ -23,8 +23,12 @@
 
 .fas-navbar {
   font-size: 30px;
-  color:#4B89AC;
-  opacity: 0.8;
+  color: $orange;
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .navbar-down .search {
