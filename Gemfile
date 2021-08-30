@@ -36,6 +36,8 @@ gem 'pg_search'
 # ruby passing headers to api request
 gem 'rest-client'
 
+# geocoder
+gem 'geocoder'
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'

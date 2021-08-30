@@ -10,4 +10,7 @@ class Spot < ApplicationRecord
     def liked?(user)
       !FavoriteSpot.where(user: user, spot: self).empty?
     end
+  
+  geocoded_by :city_name
+
 end
