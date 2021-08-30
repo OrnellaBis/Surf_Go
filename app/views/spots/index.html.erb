@@ -1,8 +1,6 @@
 <div class="container">
 <div class="all-spots">
-<h1>Tous les spots autour d'<% @spots.each do |spot| %><%= spot.city_name %>
-<% end %>
-</h1>
+<h1>Tous les spots autour de <%= @user_input%></h1>
   <div id="map"
       style="width: 100%; height: 200px;"
       data-markers="<%= @markers.to_json %>"
