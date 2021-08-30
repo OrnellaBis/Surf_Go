@@ -1,6 +1,6 @@
 <div class="container">
 <div class="add-favorite-spot">
-  <h1 class="city-show"><%= @spot.city_name %></h1>
+  <h1 class="city-show"><%= @spot.city_name %> <%= @conditions %></h1>
   <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
         <p><i class= "fas fa-heart <%= "active" if @spot.liked?(@user) %>" id="white-heart"></i></p>
       <% end %>
@@ -32,7 +32,7 @@
       <div class="d-flex">
         <i class="fab fa-cloudflare"></i>
         <div>
-          <h6>Cloud coverage</h6>
+          <h6>Couverture nuageuse</h6>
           <p><%= @minimal_forecats[1] %> %</p>
         </div>
       </div>
@@ -51,8 +51,14 @@
     <% if @user[key] %>
       <div class="card-product forecast mt-2">
         <div class="card-product-infos">
-              <h2><%= @label_forecast[key] %></h2>
-              <p><strong> <%=  value %></strong></p>
+            <h2><%= @label_forecast[key] %></h2>
+            <% if key.to_s.include?("direction") %>
+              <p><i class="fas fa-arrow-down"></i></p>
+            <% else %>
+              <p><strong> <%=  value %> <%=  @units[key] %></strong></p>
+            
+            <% end %>
+            
         </div>
       </div>
     <% end %>
