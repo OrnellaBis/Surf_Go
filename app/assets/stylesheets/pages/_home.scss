@@ -36,16 +36,31 @@
   padding-bottom: 255px;
 }
 
+.form-control-a {
+   border-radius: 15px;
+  border: transparent;
+  background-color: white;
+  form {
+    display: flex;
+  }
+}
+
 .search > form {
   display: flex;
-
   input.btn {
-    color: $gray;
     box-shadow: 0 2px 6px $gray;
+    background-color: $dark_blue;
+    border-radius: 15px;
+    padding: 0.375rem 0.75rem !important;
+    color: white;
+    border: none;
+  &:hover{
+    text-decoration: none;
+    color: grey;
   }
-
   input.form-control {
   box-shadow: 0 2px 6px $gray;
   border: 1px solid $white;
   }
+}
 }

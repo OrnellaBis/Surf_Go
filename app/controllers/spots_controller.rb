@@ -2,6 +2,7 @@ class SpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
 
   def index
+    @user= current_user
     if params[:query].present?
       @user_input = params[:query]
       if @user_input.capitalize == "Hossegor"

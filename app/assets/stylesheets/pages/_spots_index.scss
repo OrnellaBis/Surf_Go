@@ -6,3 +6,13 @@
 .all-spots {
   padding-top: 7vh;
 }
+
+#blue-heart {
+ font-size: 25px;
+ color: blue;
+ margin-left: 20px;
+ padding-top: 15px;
+ &.active {
+  color: red;
+ }
+}
