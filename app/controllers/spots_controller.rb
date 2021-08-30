@@ -1,39 +1,40 @@
 class SpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
-  def initialize
-    @units = {
-      current_direction: "Direction du courant",
-      current_speed: "m/s",
-      swell_direction: "Direction de la houle",
-      swell_height: "m",
-      water_temperature: "°C",
-      wave_direction: "Direction des vagues",
-      wave_period: "s",
-      wind_wave_height: "m",
-      wind_direction: "Direction du vent",
-      wind_speed: "m/s",
-      gust: "m/s",
-      precipitation: "Précipitations",
-      uv_index: "Index UV",
-    }
 
-    @label_forecast = {
-      current_direction: "Direction du courant",
-      current_speed: "Vitesse du courant",
-      swell_direction: "Direction de la houle",
-      swell_height: "Hauteur de la houle",
-      water_temperature: "Température de l'eau",
-      wave_direction: "Direction des vagues",
-      wave_period: "Période entre les vagues",
-      wind_wave_height: "Hauteur des vagues en fonction du vent",
-      wind_direction: "Direction du vent",
-      wind_speed: "Vitesse des vents",
-      gust: "Rafales",
-      precipitation: "Précipitations",
-      uv_index: "Index UV",
-    }
-  end
-  
+  # def initialize
+  #   @units = {
+  #     current_direction: "Direction du courant",
+  #     current_speed: "m/s",
+  #     swell_direction: "Direction de la houle",
+  #     swell_height: "m",
+  #     water_temperature: "°C",
+  #     wave_direction: "Direction des vagues",
+  #     wave_period: "s",
+  #     wind_wave_height: "m",
+  #     wind_direction: "Direction du vent",
+  #     wind_speed: "m/s",
+  #     gust: "m/s",
+  #     precipitation: "Précipitations",
+  #     uv_index: "Index UV",
+  #   }
+
+  #   @label_forecast = {
+  #     current_direction: "Direction du courant",
+  #     current_speed: "Vitesse du courant",
+  #     swell_direction: "Direction de la houle",
+  #     swell_height: "Hauteur de la houle",
+  #     water_temperature: "Température de l'eau",
+  #     wave_direction: "Direction des vagues",
+  #     wave_period: "Période entre les vagues",
+  #     wind_wave_height: "Hauteur des vagues en fonction du vent",
+  #     wind_direction: "Direction du vent",
+  #     wind_speed: "Vitesse des vents",
+  #     gust: "Rafales",
+  #     precipitation: "Précipitations",
+  #     uv_index: "Index UV",
+  #   }
+  # end
+
 
   def index
     @user= current_user
@@ -79,7 +80,7 @@ class SpotsController < ApplicationController
     @uv_index = @forecast.uv_index
 
     @minimal_forecats = [@air_temperature, @cloud_cover, @wave_height]
-    
+
     @all_forecast =
       {
       current_direction: @forecast.current_direction,
