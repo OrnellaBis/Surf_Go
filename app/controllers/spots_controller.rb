@@ -25,8 +25,8 @@ class SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @user = current_user
-    @forecast = Forecast.find_by(spot: @spot)
-
+    @forecasts = Forecast.where(spot_id: @spot.id)
+raise
     @air_temperature = @forecast.air_temperature
     @cloud_cover = @forecast.cloud_cover
     @current_direction = @forecast.current_direction
