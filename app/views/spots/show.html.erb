@@ -12,12 +12,9 @@
   </ul>
   <ul class="hour-list">
   <li> Mtn</li>
-  <li> 12h</li>
-  <li> 13h</li>
-  <li> 14h</li>
-  <li> 15h</li>
-  <li> 16h</li>
-  <li> 17h</li>
+  <% (5..22).each do |h|%>
+    <li> <%= link_to "#{h}h", spot_path(@spot, time: h) %></li>
+  <% end %>
   </ul>
   <div class= "card-forecast-container">
   <div class="big-card">
@@ -56,9 +53,9 @@
               <p><i class="fas fa-arrow-down"></i></p>
             <% else %>
               <p><strong> <%=  value %> <%=  @units[key] %></strong></p>
-            
+
             <% end %>
-            
+
         </div>
       </div>
     <% end %>
@@ -69,7 +66,7 @@
 
   <div class="d-flex justify-content-center">
     <div>
-      <p style="text-align: center;"><i class="fas fa-plus btn btn-primary mt-5" id="myBtn" data-toggle="modal", data-target="#exampleModal" ></i></p>
+      <p style="text-align: center;"><i class="btn btn-primary mt-5" id="myBtn" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes paramètres</i></p>
     </div>
   </div>
   </div>
