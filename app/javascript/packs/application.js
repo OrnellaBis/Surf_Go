@@ -37,7 +37,9 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 import { initMapbox } from '../plugins/init_mapbox';
+import { initAlgolia } from '../plugins/init_algolia';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  initAlgolia();
 })
