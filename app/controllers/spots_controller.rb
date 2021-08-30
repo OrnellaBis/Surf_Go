@@ -25,12 +25,26 @@ class SpotsController < ApplicationController
   end
 
   def show
-    if params[:time]
-      raise
-    end
     @spot = Spot.find(params[:id])
     @user = current_user
     @forecast = Forecast.find_by(spot: @spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour)
+    @current_date = DateTime.now.to_date
+    if params[:date]
+      datetime = DateTime.now + params[:date].to_i
+      @current_date = datetime.to_date
+      @forecast = Forecast.find_by(spot: @spot, time: datetime.in_time_zone('UTC').beginning_of_hour)
+    end
+    @actual_hour = DateTime.now.hour
+    @current_hour = DateTime.now.hour
+    if params[:time]
+      @forecast = Forecast.find_by(spot: @spot, time: DateTime.now.change({ hour: params[:time].to_i }).in_time_zone('UTC').beginning_of_hour)
+      @current_hour = params[:time].to_i
+    end
+    if params[:date] && params[:time]
+      datetime = DateTime.now + params[:date].to_i
+      @current_date = datetime.to_date
+      @forecast = Forecast.find_by(spot: @spot, time: datetime.change({ hour: params[:time].to_i }).in_time_zone('UTC').beginning_of_hour)
+    end
     @air_temperature = @forecast.air_temperature
     @cloud_cover = @forecast.cloud_cover
     @wave_height = @forecast.wave_height

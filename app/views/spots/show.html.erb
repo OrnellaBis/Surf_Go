@@ -7,14 +7,43 @@
 </div>
   <div class="day-container">
   <ul class="day-list">
-  <li id="today"> Aujourd'hui</li>
-  <li> Demain</li>
+    <% (0..2).each do |d|%>
+      <% if DateTime.now.to_date + d == @current_date %>
+        <% if d == 1 %>
+          <li>Demain</li>
+        <% elsif d == 2%>
+          <li>Après-demain</li>
+        <% else %>
+          <li>Aujourd'hui</li>
+        <% end %>
+      <% else %>
+        <li>
+          <%= (link_to "Aujourd'hui", spot_path(@spot, date: d)) if d == 0 %>
+          <%= (link_to "Demain", spot_path(@spot, date: d)) if d == 1 %>
+          <%= (link_to "Après-demain", spot_path(@spot, date: d)) if d == 2 %>
+        </li>
+      <% end %>
+
+    <% end %>
   </ul>
   <ul class="hour-list">
-  <li> Mtn</li>
-  <% (5..22).each do |h|%>
-    <li> <%= link_to "#{h}h", spot_path(@spot, time: h) %></li>
-  <% end %>
+    <% (0..23).each do |h|%>
+      <% if @current_date == DateTime.now.to_date %>
+        <% if h >= @actual_hour %>
+          <% if h == @current_hour %>
+            <li><%= "#{h}h" %></li>
+          <% else %>
+            <li> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]) %></li>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% if h == @current_hour %>
+          <li><%= "#{h}h" %></li>
+        <% else %>
+          <li> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]) %></li>
+        <% end %>
+      <% end %>
+    <% end %>
   </ul>
   <div class= "card-forecast-container">
   <div class="big-card">
