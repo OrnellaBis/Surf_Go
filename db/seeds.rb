@@ -13,7 +13,7 @@ Forecast.destroy_all
 User.destroy_all
 Spot.destroy_all
 
-filepath = '/Users/fzaamrane/code/OrnellaBis/Surf_Go/db/spots.json'
+filepath = 'db/spots.json'
 serialized_spot = File.read(filepath)
 data = JSON.parse(serialized_spot)
 
