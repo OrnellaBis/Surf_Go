@@ -27,8 +27,24 @@ class SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @user = current_user
-    @forecast = Forecast.find_by(spot: @spot)
-
+    @forecast = Forecast.find_by(spot: @spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour)
+    @current_date = DateTime.now.to_date
+    if params[:date]
+      datetime = DateTime.now + params[:date].to_i
+      @current_date = datetime.to_date
+      @forecast = Forecast.find_by(spot: @spot, time: datetime.in_time_zone('UTC').beginning_of_hour)
+    end
+    @actual_hour = DateTime.now.hour
+    @current_hour = DateTime.now.hour
+    if params[:time]
+      @forecast = Forecast.find_by(spot: @spot, time: DateTime.now.change({ hour: params[:time].to_i }).in_time_zone('UTC').beginning_of_hour)
+      @current_hour = params[:time].to_i
+    end
+    if params[:date] && params[:time]
+      datetime = DateTime.now + params[:date].to_i
+      @current_date = datetime.to_date
+      @forecast = Forecast.find_by(spot: @spot, time: datetime.change({ hour: params[:time].to_i }).in_time_zone('UTC').beginning_of_hour)
+    end
     @air_temperature = @forecast.air_temperature
     @cloud_cover = @forecast.cloud_cover
     @wave_height = @forecast.wave_height
@@ -99,11 +115,11 @@ class SpotsController < ApplicationController
     end
 
     if mark > 15
-      return "Sorts ta planch mec! Ya des bombes today"
+      return ["Sors ta planche, les vagues ici, c'est l'avalanche !", "THE spot to be, c'est la folie !"].sample
     elsif mark >= 10
-      return "Bonne journée en prévision, tu vas t'amuser"
+      return ["Des vagues en prévision, c'est le moment d'une petite session", "Les vagues sont cool, va y'avoir foule"].sample
     elsif mark < 10
-      return "Pas top today, mais va voir on sait jamais"
+      return ["Pas top today, mais pour le paddle c'est pt'être ok", "Pas masse de vagues, essaye la drague"].sample
     end
   end
 
@@ -124,23 +140,24 @@ class SpotsController < ApplicationController
       uv_index: "Index UV",
     }
   end
-def set_label_forecast
 
-  @label_forecast = {
-    current_direction: "Direction du courant",
-    current_speed: "Vitesse du courant",
-    swell_direction: "Direction de la houle",
-    swell_height: "Hauteur de la houle",
-    water_temperature: "Température de l'eau",
-    wave_direction: "Direction des vagues",
-    wave_period: "Période entre les vagues",
-    wind_wave_height: "Hauteur des vagues en fonction du vent",
-    wind_direction: "Direction du vent",
-    wind_speed: "Vitesse des vents",
-    gust: "Rafales",
-    precipitation: "Précipitations",
-    uv_index: "Index UV",
-  }
-end
+  def set_label_forecast
+
+    @label_forecast = {
+      current_direction: "Direction du courant",
+      current_speed: "Vitesse du courant",
+      swell_direction: "Direction de la houle",
+      swell_height: "Hauteur de la houle",
+      water_temperature: "Température de l'eau",
+      wave_direction: "Direction des vagues",
+      wave_period: "Période entre les vagues",
+      wind_wave_height: "Hauteur des vagues en fonction du vent",
+      wind_direction: "Direction du vent",
+      wind_speed: "Vitesse des vents",
+      gust: "Rafales",
+      precipitation: "Précipitations",
+      uv_index: "Index UV",
+    }
+  end
 
 end
