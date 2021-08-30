@@ -8,25 +8,27 @@ require 'rest-client'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-FavoriteSpot.destroy_all
-Forecast.destroy_all
-User.destroy_all
-Spot.destroy_all
+# FavoriteSpot.destroy_all
+# Forecast.destroy_all
+# User.destroy_all
+# Spot.destroy_all
 
-filepath = '/Users/fzaamrane/code/OrnellaBis/Surf_Go/db/spots.json'
-serialized_spot = File.read(filepath)
-data = JSON.parse(serialized_spot)
+# filepath = 'db/spots.json'
+# serialized_spot = File.read(filepath)
+# data = JSON.parse(serialized_spot)
 
-(40..70).each do |i|
-  city_name = data["data"]["spots"][i]["name"]
-  latitude = data["data"]["spots"][i]["lat"]
-  longitude = data["data"]["spots"][i]["lon"]
-  spot = Spot.new(city_name: city_name, longitude: longitude, latitude: latitude)
-  spot.save!
+# (40..70).each do |i|
+#   city_name = data["data"]["spots"][i]["name"]
+#   latitude = data["data"]["spots"][i]["lat"]
+#   longitude = data["data"]["spots"][i]["lon"]
+#   spot = Spot.new(city_name: city_name, longitude: longitude, latitude: latitude)
+#   spot.save!
+
+spot = Spot.find(56)
 
   api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
     headers={
-      'Authorization': '28ffecb6-0730-11ec-8904-0242ac130002-28ffed60-0730-11ec-8904-0242ac130002',
+      'Authorization': 'c20261c8-096a-11ec-ab81-0242ac130002-c2026268-096a-11ec-ab81-0242ac130002',
         params:
         {
           lat: spot.latitude,
@@ -38,26 +40,29 @@ data = JSON.parse(serialized_spot)
 
   data_forecast = JSON.parse(api_response)
 
-  air_temperature = data_forecast["hours"][12]["airTemperature"]["dwd"]
-  cloud_cover =  data_forecast["hours"][12]["cloudCover"]["dwd"]
-  current_direction = data_forecast["hours"][12]["currentDirection"]["meteo"]
-  current_speed = data_forecast["hours"][12]["currentSpeed"]["meteo"]
-  gust = data_forecast["hours"][12]["gust"]["dwd"]
-  precipitation = data_forecast["hours"][12]["precipitation"]["dwd"]
-  swell_direction = data_forecast["hours"][12]["swellDirection"]["dwd"]
-  swell_height = data_forecast["hours"][12]["swellHeight"]["dwd"]
-  water_temperature = data_forecast["hours"][12]["waterTemperature"]["meteo"]
-  wave_direction = data_forecast["hours"][12]["waveDirection"]["meteo"]
-  wave_height = data_forecast["hours"][12]["waveHeight"]["dwd"]
-  wave_period = data_forecast["hours"][12]["wavePeriod"]["icon"]
-  wind_wave_height = data_forecast["hours"][12]["windWaveHeight"]["dwd"]
-  wind_direction = data_forecast["hours"][12]["windDirection"]["icon"]
-  wind_speed = data_forecast["hours"][12]["windSpeed"]["icon"]
+ data_forecast["hours"].first(72).each do |hour|
+  air_temperature = hour["airTemperature"]["dwd"]
+  cloud_cover =  hour["cloudCover"]["dwd"]
+  current_direction = hour["currentDirection"]["meteo"]
+  current_speed = hour["currentSpeed"]["meteo"]
+  gust = hour["gust"]["dwd"]
+  time = hour["time"].to_s.to_datetime
+  precipitation = hour["precipitation"]["dwd"]
+  swell_direction = hour["swellDirection"]["dwd"]
+  swell_height = hour["swellHeight"]["dwd"]
+  water_temperature = hour["waterTemperature"]["meteo"]
+  wave_direction = hour["waveDirection"]["meteo"]
+  wave_height = hour["waveHeight"]["dwd"]
+  wave_period = hour["wavePeriod"]["icon"]
+  wind_wave_height = hour["windWaveHeight"]["dwd"]
+  wind_direction = hour["windDirection"]["icon"]
+  wind_speed = hour["windSpeed"]["icon"]
   forecast = Forecast.new(air_temperature: air_temperature,cloud_cover: cloud_cover, current_direction: current_direction, current_speed: current_speed, swell_direction: swell_direction,
                           swell_height: swell_height, water_temperature: water_temperature, wave_direction: wave_direction, wave_height: wave_height, wave_period: wave_period, wind_wave_height: wind_wave_height,
-                          wind_direction: wind_direction, wind_speed: wind_speed, gust: gust, precipitation: precipitation, uv_index:0.8, spot: spot)
+                          wind_direction: wind_direction, wind_speed: wind_speed, gust: gust, precipitation: precipitation, uv_index:0.8, spot: spot, time: time)
   forecast.save!
-end
+  end
+# end
 
 user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
 
@@ -82,3 +87,5 @@ user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.co
 # puts data["data"]["spots"](40..70)["lat"]
 # puts data["data"]["spots"][12]["lon"]
 # puts data["data"]["spots"][12]["name"]
+
+puts "Done!!"
