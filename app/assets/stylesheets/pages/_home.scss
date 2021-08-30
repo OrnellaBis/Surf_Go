@@ -20,7 +20,8 @@
     display: flex;
     align-items: center;
   h1 {
-    color: $white;
+    color: $dark_blue;
+    padding-bottom: 20px;
   }
   h2 {
     color: $white;
@@ -33,7 +34,7 @@
 
 .presentation {
   width: 100%;
-  padding-bottom: 450px;
+  padding-bottom: 270px;
 }
 
 .form-control-a {
@@ -48,6 +49,7 @@
 .search > form {
   display: flex;
   position: relative;
+  opacity: 0.8;
   .btn {
     position: absolute;
     right: 27px;
@@ -55,23 +57,12 @@
     vertical-align: top;
     color: #8B8576;
   }
-  //     position: absolute;
-    // left: 290px;
-    // top: 35°px;
-//   input.btn {
-//     box-shadow: 0 2px 6px $gray;
-//     background-color: $dark_blue;
-//     border-radius: 15px;
-//     padding: 0.375rem 0.75rem !important;
-//     color: white;
-//     border: none;
-//   &:hover{
-//     text-decoration: none;
-//     color: grey;
-//   }
-//   input.form-control {
-//   box-shadow: 0 2px 6px $gray;
-//   border: 1px solid $white;
-//   }
-// }
 }
+
+.home {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }

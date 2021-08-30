@@ -1,15 +1,13 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(https://images.unsplash.com/photo-1512249167167-32fb4f8b17f7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80);">
-  <div class="container">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(https://images.unsplash.com/photo-1616449973117-0e1d99c56ed3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80);">
+  <div class="home">
     <div class="presentation">
-      <h1 class="text-center"><strong>Surf Go</strong></h1>
-      <h2 class="text-center">Attrapez les toutes!</h2>
+      <h1 class="text-center"><strong>Trouvez les meilleures vagues</strong></h1>
       <div class="search">
-        <h3 class="text-center">Je veux surfer à</h3>
         <%= form_tag spots_path, method: :get do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control-a",
-            placeholder: "Chercher un spot"
+            placeholder: "Je veux surfer à..."
           %>
           <%# <%= submit_tag "Rechercher", class: "btn btn-primary" %>
           <%= button_tag(type: "submit", class: "btn btn-default") do %>

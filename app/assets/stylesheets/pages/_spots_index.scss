@@ -1,6 +1,7 @@
 #map {
   position: sticky;
   top: 0;
+  border-radius: 5px;
 }
 
 .all-spots {
@@ -9,7 +10,7 @@
 
 #blue-heart {
  font-size: 25px;
- color: blue;
+ color: $blue;
  margin-left: 20px;
  padding-top: 15px;
  &.active {

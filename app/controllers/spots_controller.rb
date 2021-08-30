@@ -21,7 +21,7 @@ class SpotsController < ApplicationController
         lng: spot.longitude
       }
     end
-    
+
   end
 
   def show
@@ -65,7 +65,7 @@ class SpotsController < ApplicationController
         elsif (value > 180 && value < 360)
           mark -= 5
         end
-        
+
       end
       if key.to_s.include?("speed")
         if key.to_s.include?("wind")
@@ -94,7 +94,7 @@ class SpotsController < ApplicationController
         elsif value > 3 && value <= 12
           mark -= 2
         end
-        
+
       end
     end
 
@@ -125,7 +125,7 @@ class SpotsController < ApplicationController
     }
   end
 def set_label_forecast
-  
+
   @label_forecast = {
     current_direction: "Direction du courant",
     current_speed: "Vitesse du courant",
@@ -142,5 +142,5 @@ def set_label_forecast
     uv_index: "Index UV",
   }
 end
-  
+
 end
