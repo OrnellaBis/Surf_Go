@@ -1,9 +1,6 @@
 class SpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
   before_action :set_units, :set_label_forecast, only: [:index, :show]
-  
-
-  
 
   def index
     @user= current_user
@@ -37,7 +34,7 @@ class SpotsController < ApplicationController
     @wave_height = @forecast.wave_height
 
     @minimal_forecats = [@air_temperature, @cloud_cover, @wave_height]
-    
+
     @all_forecast =
       {
       current_direction: @forecast.current_direction,
