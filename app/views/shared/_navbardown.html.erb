@@ -12,18 +12,18 @@
     <ul class="list-inline">
       <li class="list-inline-item">
         <%= link_to root_path do %>
-          <i class="fas fa-home fas-navbar"></i>
+          <i class="fas fa-home fas-navbar <% if controller.controller_name == "pages"%>enabled<%end%>"></i>
         <% end %>
       </li>
       <li class="list-inline-item">
         <%= link_to favorite_spots_path do %>
-            <i class="far fa-heart fas-navbar"></i>
+            <i class="far fa-heart fas-navbar <% if controller.controller_name == "favorite_spots" && controller.action_name == "index" %>enabled<%end%>"></i>
         <% end %>
       </li>
       <li class="list-inline-item">
       <% if @user = current_user %>
         <%= link_to edit_user_path(@user) do %>
-          <i class="fas fa-sliders-h fas-navbar"></i>
+          <i class="fas fa-sliders-h fas-navbar <% if controller.controller_name == "users" && controller.action_name == "edit" %>enabled<%end%>"></i>
         <% end %>
       <% else %>
         <%= link_to root_path do %>
