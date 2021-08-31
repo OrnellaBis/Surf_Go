@@ -2,11 +2,35 @@
     display: flex;
     margin: 10px auto;
     background-color: white;
+    width: 100%;
     border-radius: 15px;
-    justify-content: center;
-    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    // justify-content: center;
+    // box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    border: 1px solid $light_blue;
     i{
         font-size: 40px;
         margin-right: 5px;
+        color: $light_blue;
     }
+}
+
+.temperature {
+  width: 50%;
+  align-self: center;
+}
+
+#temperature {
+  font-size: 40px;
+}
+
+#degree {
+  font-size: 25px;
+}
+
+.clouds {
+  display: flex;
+}
+
+.wave-height {
+ display: flex;
 }

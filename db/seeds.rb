@@ -8,24 +8,22 @@ require 'rest-client'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# FavoriteSpot.destroy_all
-# Forecast.destroy_all
-# User.destroy_all
-# Spot.destroy_all
+FavoriteSpot.destroy_all
+Forecast.destroy_all
+User.destroy_all
+Spot.destroy_all
 
 
-# filepath = 'db/spots.json'
-# serialized_spot = File.read(filepath)
-# data = JSON.parse(serialized_spot)
+filepath = 'db/spots.json'
+serialized_spot = File.read(filepath)
+data = JSON.parse(serialized_spot)
 
-# (40..70).each do |i|
-#   city_name = data["data"]["spots"][i]["name"]
-#   latitude = data["data"]["spots"][i]["lat"]
-#   longitude = data["data"]["spots"][i]["lon"]
-#   spot = Spot.new(city_name: city_name, longitude: longitude, latitude: latitude)
-#   spot.save!
-
-spot = Spot.find(4)
+(40..70).each do |i|
+  city_name = data["data"]["spots"][i]["name"]
+  latitude = data["data"]["spots"][i]["lat"]
+  longitude = data["data"]["spots"][i]["lon"]
+  spot = Spot.new(city_name: city_name, longitude: longitude, latitude: latitude)
+  spot.save!
 
   api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
     headers={
@@ -42,6 +40,7 @@ spot = Spot.find(4)
   data_forecast = JSON.parse(api_response)
 
  data_forecast["hours"].first(72).each do |hour|
+
   air_temperature = hour["airTemperature"]["dwd"]
   cloud_cover =  hour["cloudCover"]["dwd"]
   current_direction = hour["currentDirection"]["meteo"]
@@ -63,7 +62,7 @@ spot = Spot.find(4)
                           wind_direction: wind_direction, wind_speed: wind_speed, gust: gust, precipitation: precipitation, uv_index:0.8, spot: spot, time: time)
   forecast.save!
   end
-# end
+end
 
 user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
 

@@ -2,6 +2,13 @@
   position: sticky;
   top: 0;
   border-radius: 5px;
+  .mapboxgl-canvas-container {
+    width: 100vw !important;
+  }
+}
+
+.card-product-infos {
+  position: relative;
 }
 
 .all-spots {
@@ -13,7 +20,36 @@
  color: $blue;
  margin-left: 20px;
  padding-top: 15px;
+ position: absolute;
+ top: -2px;
+  right: -10px;
  &.active {
   color: red;
  }
+}
+
+
+.card-list {
+  max-height: 40px;
+  overflow: hidden;
+  position: fixed;
+  bottom: 6.7vh;
+  width: 100%;
+  background: white;
+  border-radius: 20px 20px 0 0;
+  transition: max-height 0.7s ease-out;
+  &.open {
+    max-height: 70vh;
+    overflow-y: scroll;
+
+    .fa-chevron-up {
+      transform: rotate(180deg);
+    }
+  }
+  .card-list-header {
+    text-align: center;
+  }
+  .fa-chevron-up {
+    transition: transform 0.4s ease-out;
+  }
 }

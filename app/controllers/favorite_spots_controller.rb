@@ -1,6 +1,6 @@
 class FavoriteSpotsController < ApplicationController
   def index
-    @favoritespots = FavoriteSpot.all
+    @favoritespots = FavoriteSpot.all.includes(:spot)
   end
 
   def create
