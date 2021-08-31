@@ -12,8 +12,8 @@
           <%# <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" /> %>
           <div class="card-product-infos">
             <div>
-              <h2><%= spot.city_name %> <%= spot.current_condition %></h2>
-              <h6>Bonnes conditions aujourd'hui</h6>
+              <h2><%= spot.city_name %> </h2>
+              <h6><%= spot.current_condition %></h6>
               <%= link_to spot_favorite_spots_path(spot, page: "index"), method: :post do %>
                 <% if spot.liked?(@user) %>
                     <i class= "fas fa-heart active" id="yellow-heart"></i>
