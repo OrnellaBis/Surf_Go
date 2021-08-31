@@ -77,14 +77,13 @@
     <% if @user[key] %>
       <div class="card-product forecast mt-2">
         <div class="card-product-infos">
-            <h2><%= @label_forecast[key] %></h2>
-            <% if key.to_s.include?("direction") %>
-              <p><i class="fas fa-arrow-down"></i></p>
-            <% else %>
-              <p><strong> <%=  value %> <%=  @units[key] %></strong></p>
-
-            <% end %>
-
+          <h2><%= @label_forecast[key] %></h2>
+          <% if key.to_s.include?("direction") %>
+            <p><i class="fas fa-arrow-down"></i></p>
+          <% else %>
+            <p><strong> <%=  value %> <%=  @units[key] %></strong></p>
+          <% end %>
+          <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
         </div>
       </div>
     <% end %>
@@ -114,19 +113,18 @@
           <h1>Mes critères personnalisés</h1>
     <div class="form-container">
     <%= simple_form_for @user do |f| %>
-      <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
-      <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
-      <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
-      <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
-      <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
-      <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
-      <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
-      <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
       <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
+      <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
+      <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
+      <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
       <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
+      <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
       <%= f.input :gust, as: :boolean, label: "Rafales" %>
-      <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
-      <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
+      <%= f.input :precipitation, as: :boolean, label: "Précipitations" %>
+      <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
+      <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
+      <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
+      <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
       <%= f.hidden_field :spot_id, :value => @spot.id %>
       <div class="text-center mb-3">
       <%= f.submit "Valider mes critères", class: "btn btn-dark" %>

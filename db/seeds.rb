@@ -25,7 +25,7 @@ require 'rest-client'
 #   spot = Spot.new(city_name: city_name, longitude: longitude, latitude: latitude)
 #   spot.save!
 
-spot = Spot.find(56)
+spot = Spot.find(4)
 
   api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
     headers={

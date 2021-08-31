@@ -37,8 +37,18 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
+  h2 {
+    font-size: smaller;
+  }
 }
 
 .forecast {
   border-radius: 15px;
+  height: 80px;
+  font-weight: bold;
+}
+
+img.forecast-icon {
+  width: 0px;
+  height: 10px;
 }
