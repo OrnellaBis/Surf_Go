@@ -10,6 +10,7 @@
         <%= link_to spot_path(spot) do %>
           <div class="card-product">
             <%# <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" /> %>
+
             <div class="card-product-infos d-flex">
               <div>
                 <h2><%= spot.city_name %></h2><p> est the place to surf aujourd'hui</p>
@@ -19,7 +20,6 @@
               </div>
               <div data-controller="forecast-validation">
                 <% forecast = Forecast.find_by(spot: spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>
-                
                 <% if spot.validated?(current_user) %>
                   <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
                 <% else %>
