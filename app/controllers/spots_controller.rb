@@ -29,21 +29,25 @@ class SpotsController < ApplicationController
     @user = current_user
     @forecast = Forecast.find_by(spot: @spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour)
     @current_date = DateTime.now.to_date
+    @validate = @forecast.is_validate?
     if params[:date]
       datetime = DateTime.now + params[:date].to_i
       @current_date = datetime.to_date
       @forecast = Forecast.find_by(spot: @spot, time: datetime.in_time_zone('UTC').beginning_of_hour)
+      @validate = @forecast.is_validate?
     end
     @actual_hour = DateTime.now.hour
     @current_hour = DateTime.now.hour
     if params[:time]
       @forecast = Forecast.find_by(spot: @spot, time: DateTime.now.change({ hour: params[:time].to_i }).in_time_zone('UTC').beginning_of_hour)
       @current_hour = params[:time].to_i
+      @validate = @forecast.is_validate?
     end
     if params[:date] && params[:time]
       datetime = DateTime.now + params[:date].to_i
       @current_date = datetime.to_date
       @forecast = Forecast.find_by(spot: @spot, time: datetime.change({ hour: params[:time].to_i }).in_time_zone('UTC').beginning_of_hour)
+      @validate = @forecast.is_validate?
     end
     @air_temperature = @forecast.air_temperature
     @cloud_cover = @forecast.cloud_cover
