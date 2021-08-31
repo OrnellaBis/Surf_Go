@@ -28,6 +28,7 @@ import {fetchMethode} from "../components/_API-Storm.js";
 import {toggleSearch } from "../components/toggle_search";
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAlgolia } from '../plugins/init_algolia';
+import "controllers"
 import { toggleSpot } from "../components/toggle_spot_index";
 import { swipeSides } from "../components/show-swipe-sides";
 
