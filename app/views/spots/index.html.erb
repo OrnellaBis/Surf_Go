@@ -11,7 +11,8 @@
           <div class="card-product">
             <%# <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" /> %>
             <div class="card-product-infos">
-              <h2><%= spot.city_name %></h2><p> est the place to surf aujourd'hui</p>
+              <h2><%= spot.city_name %></h2>
+              <h6> <i class="fas fa-check"></i> Bonnes conditions pour surfer</h6>
               <%= link_to spot_favorite_spots_path(spot, page: "index"), method: :post do %>
                 <p><i class= "fas fa-heart <%= "active" if spot.liked?(@user) %>" id="blue-heart"></i></p>
               <% end %>

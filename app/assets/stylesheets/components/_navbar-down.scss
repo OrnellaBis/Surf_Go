@@ -24,11 +24,12 @@
 
 .fas-navbar {
   font-size: 30px;
-  color: $orange;
-  opacity: 1;
+  color: #ACB5BD;
+  opacity: 0.9;
 
   &:hover {
-    opacity: 0.7;
+    color: $orange;
+    opacity: 0.8;
   }
 }
 
