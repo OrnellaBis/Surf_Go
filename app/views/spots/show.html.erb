@@ -1,6 +1,6 @@
-<div class="container">
+<%# <div class="container"> %>
   <div class="add-favorite-spot">
-    <h1 class="city-show"><%= @spot.city_name %> <%= @validate %></h1>
+    <h1 class="city-show"><%= @spot.city_name %></h1>
     <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
           <% if @spot.liked?(@user) %>
             <p>
@@ -14,9 +14,9 @@
         <% end %>
   </div>
   <div class="conditions-phrase">
-    <%= @conditions %>
+    <%= @conditions %> <%= @validate %>
   </div>
-  <div class="day-container">
+  <%# <div class="day-container"> %>
   <ul class="day-list">
     <% (0..2).each do |d|%>
       <% if DateTime.now.to_date + d == @current_date %>
@@ -57,57 +57,63 @@
   </ul>
   <div class= "card-forecast-container" id="content">
     <div class="big-card">
-      <div class="temperature">
-        <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
-      </div>
-      <div class="wave-clouds">
-      <div class="wave-height">
+      <div class="wave-height" style="background-image: url('<%= image_path("vagues_better.jpg")%>')">
+        <%# <div>
+          <img class="wave-image" src="https://cdn-icons-png.flaticon.com/512/3313/3313341.png" alt="">
+        </div> %>
         <div>
-          <i class="fas fa-water"></i>
-        </div>
-        <div>
-          <h6>Hauteur de vague</h6>
-          <p><%= @minimal_forecats[2] %> m</p>
+          <h6 id="wavedesc">Hauteur des vagues</h6>
+          <p id="waveh"><%= @minimal_forecats[2].round(1) %> m</p>
         </div>
       </div>
-      <div class="clouds">
-        <div>
-          <i class="fab fa-cloudflare"></i>
+
+      <div class="wave-temperature">
+        <div id= "temperature">
+          <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
         </div>
-        <div>
-          <h6>Couverture nuageuse</h6>
-          <p><%= @minimal_forecats[1] %> %</p>
+        <div class="clouds">
+          <div>
+            <h6 id="forecast-title">Couverture nuageuse</h6>
+          </div>
+          <div class="icon-forecast">
+            <div>
+              <i class="fab fa-cloudflare"></i>
+            </div>
+            <div id="forecast-mesure">
+              <p><%= @minimal_forecats[1] %>%</p>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   <div class="card-grid-forecast">
   <% @all_forecast.each do |key, value| %>
+  <% unless key == :wave_height %>
     <% if @user[key] %>
       <div class="card-product forecast mt-2">
+      <h2><%= @label_forecast[key] %></h2>
         <div class="card-product-infos">
-            <h2><%= @label_forecast[key] %></h2>
-            <% if key.to_s.include?("direction") %>
-              <p><i class="fas fa-arrow-down"></i></p>
-            <% else %>
-              <p><strong> <%=  value %> <%=  @units[key] %></strong></p>
-
-            <% end %>
-
+         <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
+          <% if key.to_s.include?("direction") %>
+          <div class="direction-forecast">
+              <p><i class="fas fa-arrow-down ml-3"></i></p>
+          </div>
+          <% else %>
+            <p> <%=  value %> <%=  @units[key] %></p>
+          <% end %>
         </div>
       </div>
     <% end %>
+    <% end %>
   <% end %>
-  </div>
+  <%# </div> %>
 
-
-
-  <div class="d-flex justify-content-center">
+  <div class="btn-criteria">
     <div>
-      <p style="text-align: center;"><i class="btn btn-primary mt-5" id="myBtn" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</i></p>
+      <p id="button-criteria" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</p>
     </div>
   </div>
-  </div>
+  <%# </div> %>
 
 <div class="container">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,19 +129,18 @@
           <h1>Mes critères personnalisés</h1>
     <div class="form-container">
     <%= simple_form_for @user do |f| %>
-      <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
-      <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
-      <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
-      <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
-      <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
-      <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
-      <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
-      <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
       <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
+      <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
+      <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
+      <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
       <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
+      <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
       <%= f.input :gust, as: :boolean, label: "Rafales" %>
-      <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
-      <%= f.input :uv_index, as: :boolean, label: "Indice UV"%>
+      <%= f.input :precipitation, as: :boolean, label: "Précipitations" %>
+      <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
+      <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
+      <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
+      <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
       <%= f.hidden_field :spot_id, :value => @spot.id %>
       <div class="text-center mb-3">
       <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
