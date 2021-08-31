@@ -28,10 +28,16 @@
   opacity: 0.9;
 
   &:hover {
-    color: $orange;
+    color: $yellow;
     opacity: 0.8;
   }
 }
+
+.enabled {
+ color: $yellow;
+  opacity: 0.8;
+}
+
 
 .navbar-down .search {
   padding-top: 2.5%;

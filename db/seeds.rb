@@ -27,7 +27,7 @@ data = JSON.parse(serialized_spot)
 
   api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
     headers={
-      'Authorization': 'c20261c8-096a-11ec-ab81-0242ac130002-c2026268-096a-11ec-ab81-0242ac130002',
+      'Authorization': 'c4623262-049d-11ec-ad82-0242ac130002-c46232ee-049d-11ec-ad82-0242ac130002',
         params:
         {
           lat: spot.latitude,
@@ -40,7 +40,7 @@ data = JSON.parse(serialized_spot)
   data_forecast = JSON.parse(api_response)
 
  data_forecast["hours"].first(72).each do |hour|
-  
+
   air_temperature = hour["airTemperature"]["dwd"]
   cloud_cover =  hour["cloudCover"]["dwd"]
   current_direction = hour["currentDirection"]["meteo"]
