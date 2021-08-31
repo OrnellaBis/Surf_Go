@@ -85,14 +85,16 @@
   <% @all_forecast.each do |key, value| %>
     <% if @user[key] %>
       <div class="card-product forecast mt-2">
+      <h2><%= @label_forecast[key] %></h2>
         <div class="card-product-infos">
-          <h2><%= @label_forecast[key] %></h2>
+         <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
           <% if key.to_s.include?("direction") %>
-            <p><i class="fas fa-arrow-down"></i></p>
+          <div class="direction-forecast">
+              <p><i class="fas fa-arrow-down ml-3"></i></p>
+          </div>
           <% else %>
-            <p><strong> <%=  value %> <%=  @units[key] %></strong></p>
+            <p> <%=  value %> <%=  @units[key] %></p>
           <% end %>
-          <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
         </div>
       </div>
     <% end %>
