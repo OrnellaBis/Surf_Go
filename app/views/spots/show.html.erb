@@ -88,6 +88,7 @@
     </div>
   <div class="card-grid-forecast">
   <% @all_forecast.each do |key, value| %>
+  <% unless key == :wave_height %>
     <% if @user[key] %>
       <div class="card-product forecast mt-2">
       <h2><%= @label_forecast[key] %></h2>
@@ -102,6 +103,7 @@
           <% end %>
         </div>
       </div>
+    <% end %>
     <% end %>
   <% end %>
   <%# </div> %>
