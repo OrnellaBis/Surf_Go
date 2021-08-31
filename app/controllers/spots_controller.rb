@@ -140,6 +140,7 @@ class SpotsController < ApplicationController
       uv_index: "Index UV",
     }
   end
+
   def set_label_forecast
 
     @label_forecast = {
