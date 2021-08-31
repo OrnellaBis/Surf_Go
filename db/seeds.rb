@@ -27,7 +27,7 @@ data = JSON.parse(serialized_spot)
 
   api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
     headers={
-      'Authorization': 'c20261c8-096a-11ec-ab81-0242ac130002-c2026268-096a-11ec-ab81-0242ac130002',
+      'Authorization': 'c4623262-049d-11ec-ad82-0242ac130002-c46232ee-049d-11ec-ad82-0242ac130002',
         params:
         {
           lat: spot.latitude,

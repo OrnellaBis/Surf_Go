@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 2021_08_31_091432) do
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "day_condition"
   end
 
   create_table "users", force: :cascade do |t|

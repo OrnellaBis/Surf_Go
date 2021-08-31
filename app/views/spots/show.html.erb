@@ -1,6 +1,6 @@
-<div class="container">
+<%# <div class="container"> %>
   <div class="add-favorite-spot">
-    <h1 class="city-show"><%= @spot.city_name %></h1>
+    <h1 class="city-show"><%= @spot.city_name %> <%= @validate %></h1>
     <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
           <% if @spot.liked?(@user) %>
             <p>
@@ -16,7 +16,7 @@
   <div class="conditions-phrase">
     <%= @conditions %>
   </div>
-  <div class="day-container">
+  <%# <div class="day-container"> %>
   <ul class="day-list">
     <% (0..2).each do |d|%>
       <% if DateTime.now.to_date + d == @current_date %>
@@ -57,28 +57,33 @@
   </ul>
   <div class= "card-forecast-container" id="content">
     <div class="big-card">
-      <div class="temperature">
-        <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
-      </div>
-      <div class="wave-clouds">
-      <div class="wave-height">
+      <div class="wave-height" style="background-image: url('<%= image_path("vagues_better.jpg")%>')">
+        <%# <div>
+          <img class="wave-image" src="https://cdn-icons-png.flaticon.com/512/3313/3313341.png" alt="">
+        </div> %>
         <div>
-          <i class="fas fa-water"></i>
-        </div>
-        <div>
-          <h6>Hauteur de vague</h6>
-          <p><%= @minimal_forecats[2] %> m</p>
+          <h6 id="wavedesc">Hauteur des vagues</h6>
+          <p id="waveh"><%= @minimal_forecats[2].round(1) %> m</p>
         </div>
       </div>
-      <div class="clouds">
-        <div>
-          <i class="fab fa-cloudflare"></i>
+
+      <div class="wave-temperature">
+        <div id= "temperature">
+          <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
         </div>
-        <div>
-          <h6>Couverture nuageuse</h6>
-          <p><%= @minimal_forecats[1] %> %</p>
+        <div class="clouds">
+          <div>
+            <h6 id="forecast-title">Couverture nuageuse</h6>
+          </div>
+          <div class="icon-forecast">
+            <div>
+              <i class="fab fa-cloudflare"></i>
+            </div>
+            <div id="forecast-mesure">
+              <p><%= @minimal_forecats[1] %>%</p>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   <div class="card-grid-forecast">
@@ -99,16 +104,14 @@
       </div>
     <% end %>
   <% end %>
-  </div>
+  <%# </div> %>
 
-
-
-  <div class="d-flex justify-content-center">
+  <div class="btn-criteria">
     <div>
-      <p style="text-align: center;"><i class="btn btn-primary mt-5" id="myBtn" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</i></p>
+      <p id="button-criteria" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</p>
     </div>
   </div>
-  </div>
+  <%# </div> %>
 
 <div class="container">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
