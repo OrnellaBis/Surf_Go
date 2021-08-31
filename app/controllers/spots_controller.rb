@@ -11,6 +11,10 @@ class SpotsController < ApplicationController
       end
       city_lat_long = Geocoder.search(@user_input).first.coordinates
       @spots = Spot.near([city_lat_long[0], city_lat_long[1]], 10)
+      # @spots.each do |spot|
+      #   forecast = Forecast.find_by(spot: spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour)
+      #   @conditions = surffing_condition(forecast)
+      # end
     else
       @spots = Spot.all
     end
@@ -18,7 +22,9 @@ class SpotsController < ApplicationController
     @markers = @spots.map do |spot|
       {
         lat: spot.latitude,
-        lng: spot.longitude
+        lng: spot.longitude,
+        # image_url: ('images/planche')
+        image_url: helpers.asset_url('planche')
       }
     end
 
