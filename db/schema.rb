@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_30_094859) do
+ActiveRecord::Schema.define(version: 2021_08_31_091432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_08_30_094859) do
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "day_condition"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,7 +87,18 @@ ActiveRecord::Schema.define(version: 2021_08_30_094859) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "validation_forecasts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "forecast_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["forecast_id"], name: "index_validation_forecasts_on_forecast_id"
+    t.index ["user_id"], name: "index_validation_forecasts_on_user_id"
+  end
+
   add_foreign_key "favorite_spots", "spots"
   add_foreign_key "favorite_spots", "users"
   add_foreign_key "forecasts", "spots"
+  add_foreign_key "validation_forecasts", "forecasts"
+  add_foreign_key "validation_forecasts", "users"
 end

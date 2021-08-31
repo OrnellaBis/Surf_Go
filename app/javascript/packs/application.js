@@ -28,7 +28,7 @@ import {fetchMethode} from "../components/_API-Storm.js";
 import {toggleSearch } from "../components/toggle_search";
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAlgolia } from '../plugins/init_algolia';
-
+import "controllers"
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAlgolia();
