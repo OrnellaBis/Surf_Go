@@ -5,12 +5,32 @@
       <% @favoritespots.each do |favoritespot| %>
         <%= link_to spot_path(favoritespot.spot_id) do %>
           <div class="card-product">
+<<<<<<< HEAD
             <%# <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" /> %>
             <div class="card-product-infos">
               <h2><%= favoritespot.spot.city_name %></h2>
               <%= link_to favorite_spot_path(favoritespot), method: :delete, data:{confirm: "Souhaitez-vous supprimer votre spot favori #{favoritespot.spot.city_name} ?"} do %>
                 <p>Supprimer<i class="fas fa-trash-alt pl-1"></i></p>
               <% end %>
+=======
+            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" />
+            <div class="card-product-infos d-flex">
+              <div>
+                <h2><%= favoritespot.spot.city_name %></h2>
+                <%= link_to favorite_spot_path(favoritespot), method: :delete, data:{confirm: "Souhaitez-vous supprimer votre spot favori #{favoritespot.spot.city_name} ?"} do %>
+                  <p>Supprimer<i class="fas fa-trash-alt pl-1"></i></p>
+                <% end %>
+              </div>
+              <div data-controller="forecast-validation">
+                <% forecast = Forecast.find_by(spot: favoritespot.spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>
+                
+                <% if favoritespot.spot.validated?(current_user) %>
+                  <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
+                <% else %>
+                  <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
+                <% end %>
+              </div>
+>>>>>>> a114a0200023142df27b1d53391348719b522e46
             </div>
           </div>
         <% end %>

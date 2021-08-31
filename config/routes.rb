@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   end
   resources :favorite_spots, only: [:index, :destroy]
   resources :users, only: [:edit, :update]
+  resources :forecasts, only:[:show] do
+    resources :validation_forecasts, only: [:create]
+  end
 end

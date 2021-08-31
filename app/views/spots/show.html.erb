@@ -1,29 +1,39 @@
 <div class="container">
-<div class="add-favorite-spot">
-  <h1 class="city-show"><%= @spot.city_name %> <%= @conditions %></h1>
-  <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
-        <p><i class= "fas fa-heart <%= "active" if @spot.liked?(@user) %>" id="white-heart"></i></p>
-      <% end %>
-</div>
+  <div class="add-favorite-spot">
+    <h1 class="city-show"><%= @spot.city_name %></h1>
+    <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
+          <% if @spot.liked?(@user) %>
+            <p>
+              <i class= "fas fa-heart active" id="white-heart"></i>
+            </p>
+          <% else %>
+            <p>
+              <i class= "far fa-heart blue-heart"></i>
+            </p>
+          <% end %>
+        <% end %>
+  </div>
+  <div class="conditions-phrase">
+    <%= @conditions %>
+  </div>
   <div class="day-container">
   <ul class="day-list">
     <% (0..2).each do |d|%>
       <% if DateTime.now.to_date + d == @current_date %>
         <% if d == 1 %>
-          <li>Demain</li>
-        <% elsif d == 2%>
-          <li>Après-demain</li>
+          <li id="day-today">Demain</li>
+        <% elsif d == 2 %>
+          <li id="day-today">Après-demain</li>
         <% else %>
-          <li>Aujourd'hui</li>
+          <li id="day-today">Aujourd'hui</li>
         <% end %>
       <% else %>
         <li>
-          <%= (link_to "Aujourd'hui", spot_path(@spot, date: d)) if d == 0 %>
-          <%= (link_to "Demain", spot_path(@spot, date: d)) if d == 1 %>
-          <%= (link_to "Après-demain", spot_path(@spot, date: d)) if d == 2 %>
+          <%= (link_to "Aujourd'hui", spot_path(@spot, date: d), id: "day-link") if d == 0 %>
+          <%= (link_to "Demain", spot_path(@spot, date: d), id: "day-link") if d == 1 %>
+          <%= (link_to "Après-demain", spot_path(@spot, date: d), id: "day-link") if d == 2 %>
         </li>
       <% end %>
-
     <% end %>
   </ul>
   <ul class="hour-list">
@@ -31,47 +41,46 @@
       <% if @current_date == DateTime.now.to_date %>
         <% if h >= @actual_hour %>
           <% if h == @current_hour %>
-            <li><%= "#{h}h" %></li>
+            <li id="current-hour"><%= "#{h}h" %></li>
           <% else %>
-            <li> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]) %></li>
+            <li class="hour-list"> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]), id: "hour-link"  %></li>
           <% end %>
         <% end %>
       <% else %>
         <% if h == @current_hour %>
-          <li><%= "#{h}h" %></li>
+          <li id="current-hour"><%= "#{h}h" %></li>
         <% else %>
-          <li> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]) %></li>
+          <li> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]), id: "hour-link" %></li>
         <% end %>
       <% end %>
     <% end %>
   </ul>
-  <div class= "card-forecast-container">
-  <div class="big-card">
-    <div class="d-flex align-items-center ml-2">
-      <i class="fas fa-water"></i>
-      <div>
-        <h6>Hauteur de vague</h6>
-        <p><%= @minimal_forecats[2] %> m</p>
+  <div class= "card-forecast-container" id="content">
+    <div class="big-card">
+      <div class="temperature">
+        <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
       </div>
-    </div>
-    <div class="mr-2 mt-3">
-      <div class="d-flex">
-        <i class="fab fa-cloudflare"></i>
+      <div class="wave-clouds">
+      <div class="wave-height">
+        <div>
+          <i class="fas fa-water"></i>
+        </div>
+        <div>
+          <h6>Hauteur de vague</h6>
+          <p><%= @minimal_forecats[2] %> m</p>
+        </div>
+      </div>
+      <div class="clouds">
+        <div>
+          <i class="fab fa-cloudflare"></i>
+        </div>
         <div>
           <h6>Couverture nuageuse</h6>
           <p><%= @minimal_forecats[1] %> %</p>
         </div>
       </div>
-      <hr>
-      <div class="d-flex">
-        <i class="fas fa-sun"></i>
-        <div>
-          <h6>Température de l'air</h6>
-          <p><%= @minimal_forecats[0] %> °C</p>
-        </div>
       </div>
     </div>
-  </div>
   <div class="card-grid-forecast">
   <% @all_forecast.each do |key, value| %>
     <% if @user[key] %>
