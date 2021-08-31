@@ -61,14 +61,17 @@ class SpotsController < ApplicationController
 
     @minimal_forecats = [@air_temperature, @cloud_cover, @wave_height]
 
+
     @all_forecast = @forecast.all_attributes
       
     @conditions = @forecast.surfing_condition
+
   end
 
   private
 
   def set_units
+
     @units = Forecast::UNITS
   end
 

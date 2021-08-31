@@ -3,8 +3,6 @@
     height: 120px;
     background: white;
     box-shadow: 0 0 3px rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
     border-radius: 20px;
     margin-bottom: 10px;
   }
@@ -30,15 +28,38 @@
   }
 
   .card-product .card-product-infos {
-    padding: 20px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 
 .card-grid-forecast {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    margin: 5px;
+    text-align: center;
+  }
+  p {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 1px;
+    margin: 2px;
+  }
 }
 
 .forecast {
   border-radius: 15px;
+  height: 80px;
+  box-shadow: 0 2px 1px 0.5px #DFE6EC;
+}
+
+img.forecast-icon {
+  width: 50px;
+  height: 50px;
+  opacity: 0.7;
 }
