@@ -2,16 +2,22 @@ const toggleSearch = () => {
   const searchIcon = document.querySelector(".search-getter");
   const searchBar = document.querySelector(".navbar-down .search");
   const iconList = document.querySelector(".list-inline");
+
   searchIcon.addEventListener("click", (event) => {
+    event.stopPropagation();
     event.currentTarget.classList.toggle("active");
     searchBar.style.display = 'block';
     iconList.style.display = 'none';
   });
+
   const mainWrapper = document.querySelector(".main-wrapper");
+
   mainWrapper.addEventListener("click", (event) => {
     event.currentTarget.classList.toggle("active");
     searchBar.style.display = 'none';
     iconList.style.display = 'flex';
+    console.log("j'ai touchééo")
+    
     // je remove la classe active sur navbar-down
   })
 
