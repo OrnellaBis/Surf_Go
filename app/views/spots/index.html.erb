@@ -12,30 +12,30 @@
           <div class="card-product">
             <%# <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" /> %>
             <div class="card-product-infos">
-              <div>
+              <div class="title-heart">
                 <h2><%= spot.city_name %></h2>
+                <div class="favorite-spot">
+                  <%= link_to spot_favorite_spots_path(spot, page: "index"), method: :post, data: { action: 'click->spots#favorite', spot_id: spot.id } do %>
+                    <% if spot.liked?(@user) %>
+                        <i class= "fas fa-heart active" id="yellow-heart"></i>
+                    <% else %>
+                        <i class= "far fa-heart" id="empty-heart"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
                 <% if spot.current_forecast.is_validate? %>
-                  <p>Les surfeurs ont validé cette météo!</p>
+                  <p>Les surfeurs ont validé la météo</p>
                 <% else %>
                   <p><%= spot.current_condition %></p>
                 <% end %>
-              </div>
-              <div class="favorite-spot">
-                <%= link_to spot_favorite_spots_path(spot, page: "index"), method: :post, data: { action: 'click->spots#favorite', spot_id: spot.id } do %>
-                  <% if spot.liked?(@user) %>
-                      <i class= "fas fa-heart active" id="yellow-heart"></i>
-                  <% else %>
-                      <i class= "far fa-heart" id="empty-heart"></i>
-                  <% end %>
-                <% end %>
-              </div>
             </div>
-            <div data-controller="forecast-validation">
+            <div data-controller="forecast-validation" class="validate-conditions">
               <% forecast = Forecast.find_by(spot: spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>
               <% if spot.validated?(current_user) %>
-                <span>J'y suis et je valide cette météo</span><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
+                <p>J'y suis et je valide cette météo</p><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
               <% else %>
-                <span>J'y suis et je valide cette météo</span><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
+                <p>J'y suis et je valide cette météo</p><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
               <% end %>
             </div>
           </div>
