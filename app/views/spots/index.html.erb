@@ -24,7 +24,11 @@
                   <% end %>
                 </div>
               </div>
-                <p><%= spot.current_condition %></p>
+                <% if spot.current_forecast.is_validate? %>
+                  <p>Les surfeurs ont validé la météo</p>
+                <% else %>
+                  <p><%= spot.current_condition %></p>
+                <% end %>
             </div>
             <div data-controller="forecast-validation" class="validate-conditions">
               <% forecast = Forecast.find_by(spot: spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>

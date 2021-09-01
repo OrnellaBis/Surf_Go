@@ -35,7 +35,7 @@ class Forecast < ApplicationRecord
     }
 
   def is_validate?
-    self.validation_forecasts.size >= 5
+    self.validation_forecasts.size >= 1
   end
 
   def all_attributes

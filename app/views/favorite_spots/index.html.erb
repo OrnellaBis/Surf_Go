@@ -9,7 +9,11 @@
             <div class="card-product-infos">
               <div>
                 <h2><%= favoritespot.spot.city_name %></h2>
-                <p><%= favoritespot.spot.current_condition %></p>
+                <% if favoritespot.spot.current_forecast.is_validate? %>
+                  <p>Les surfeurs ont validé cette météo!</p>
+                <% else %>
+                  <p><%= favoritespot.spot.current_condition %></p>
+                <% end %>
               </div>
               <%= link_to favorite_spot_path(favoritespot.id), method: :delete do %>
                 <i class="fas fa-trash-alt pl-1 delete-icon"></i>
