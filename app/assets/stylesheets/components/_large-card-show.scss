@@ -1,6 +1,7 @@
 .big-card{
     display: flex;
     margin: 10px auto;
+    margin-top: 0;
     background-color: white;
     width: 100%;
     border-radius: 15px;
@@ -28,8 +29,13 @@
 }
 
 #temperature {
-  font-size: 32px;
+  font-size: 40px;
   text-align: center;
+  color: $light_blue;
+}
+
+.temperature {
+  border-bottom: 1px solid $light_blue;
 }
 
 #degree {
@@ -38,11 +44,14 @@
 
 #wavedesc {
   font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 0 black;
 }
 
 #waveh {
   font-size: 35px;
   font-weight: bold;
+  text-shadow: 0 0 black;
 }
 
 .icon-forecast {
@@ -55,8 +64,21 @@
   width: 100%;
   font-size: 13px;
   padding: 3px;
+  color: $dark_blue;
 }
 
 #forecast-mesure {
   font-size: 25px;
+  padding-top: 8px;
+  color: $dark_blue;
 }
+
+.clouds {
+  padding-top: 10px;
+}
+
+#clouds {
+  width: 50px;
+  object-fit: cover;
+}
+// <div>Icons made by <a href="https://www.flaticon.com/authors/fjstudio" title="fjstudio">fjstudio</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
