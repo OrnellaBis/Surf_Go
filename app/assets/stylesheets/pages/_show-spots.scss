@@ -86,9 +86,9 @@ li {
   width: 90%;
   padding-left: 10%;
   height: 50px;
-  padding-top: 2%;
   color: $blue;
-  margin-bottom: 13px;
+  margin-bottom: 16px;
+  font-size: 18px;
 }
 
 #day-today {
@@ -111,4 +111,16 @@ li {
   font-size: 16px;
   color: $light_blue;
   text-decoration: none;
+}
+
+.weather-ok {
+  display: flex;
+  justify-content: space-around;
+  color: $light_blue;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.fa-check-circle {
+  font-size: 25px;
 }

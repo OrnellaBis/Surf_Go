@@ -14,7 +14,7 @@ class Forecast < ApplicationRecord
       wind_direction: "Direction du vent",
       wind_speed: "m/s",
       gust: "m/s",
-      precipitation: "Précipitations",
+      precipitation: "kg/m2",
       uv_index: "Index UV",
     }
 
@@ -37,7 +37,7 @@ class Forecast < ApplicationRecord
   def is_validate?
     self.validation_forecasts.size >= 5
   end
-  
+
   def all_attributes
     {
       current_direction: current_direction,
@@ -56,7 +56,7 @@ class Forecast < ApplicationRecord
       uv_index: uv_index
     }
   end
-  
+
   def surfing_condition
     mark = 0
     all_attributes.each do |key, value|
@@ -104,7 +104,7 @@ class Forecast < ApplicationRecord
     elsif mark >= 10
       return ["Des vagues en prévision, c'est le moment d'une petite session", "Les vagues sont cool, va y'avoir foule"].sample
     elsif mark < 10
-      return ["Pas top today, mais pour le paddle c'est pt'être ok", "Pas masse de vagues, essaye la drague"].sample
+      return ["Pas de vagues today, mais pour le paddle c'est peut-être ok", "Mer d'huile, c'est la tuile"].sample
     end
   end
 end
