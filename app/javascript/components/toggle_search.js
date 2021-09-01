@@ -3,6 +3,7 @@ const toggleSearch = () => {
   const searchBar = document.querySelector(".navbar-down .search");
   const iconList = document.querySelector(".list-inline");
   searchIcon.addEventListener("click", (event) => {
+    event.stopPropagation();
     event.currentTarget.classList.toggle("active");
     searchBar.style.display = 'block';
     iconList.style.display = 'none';
