@@ -18,11 +18,11 @@
 #yellow-heart {
  font-size: 25px;
  color: $blue;
- margin-left: 20px;
- padding-top: 20px;
- position: absolute;
- top: -2px;
-  right: -10px;
+//  margin-left: 20px;
+//  padding-top: 20px;
+//  position: absolute;
+//  top: -2px;
+//   right: -10px;
  &.active {
   color: $yellow;
  }
@@ -30,11 +30,11 @@
 
 #empty-heart {
   font-size: 25px;
- margin-left: 20px;
- padding-top: 20px;
- position: absolute;
- top: -2px;
-right: -10px;
+//  margin-left: 20px;
+//  padding-top: 20px;
+//  position: absolute;
+//  top: -2px;
+// right: -10px;
 }
 
 .card-list {

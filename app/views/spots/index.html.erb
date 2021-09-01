@@ -6,33 +6,37 @@
   </div>
   <div class="card-list pb-4 px-3">
   <div class="card-list-header py-2"> <i class="fas fa-chevron-up "></i> </div>
-    <% @spots.each do |spot| %>
-      <%= link_to spot_path(spot) do %>
-        <div class="card-product">
-          <%# <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" /> %>
-          <div class="card-product-infos">
-            <div>
-              <h2><%= spot.city_name %> <%= spot.current_condition %></h2>
-              <h6>Bonnes conditions aujourd'hui</h6>
-              <%= link_to spot_favorite_spots_path(spot, page: "index"), method: :post do %>
-                <% if spot.liked?(@user) %>
-                    <i class= "fas fa-heart active" id="yellow-heart"></i>
-                <% else %>
-                    <i class= "far fa-heart" id="empty-heart"></i>
+    <div data-controller="spots">
+      <% @spots.each do |spot| %>
+        <%= link_to spot_path(spot) do %>
+          <div class="card-product">
+            <%# <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3VyZnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" /> %>
+            <div class="card-product-infos">
+              <div>
+                <h2><%= spot.city_name %></h2>
+                <p><%= spot.current_condition %></p>
+              </div>
+              <div class="favorite-spot">
+                <%= link_to spot_favorite_spots_path(spot, page: "index"), method: :post, data: { action: 'click->spots#favorite', spot_id: spot.id } do %>
+                  <% if spot.liked?(@user) %>
+                      <i class= "fas fa-heart active" id="yellow-heart"></i>
+                  <% else %>
+                      <i class= "far fa-heart" id="empty-heart"></i>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
             <div data-controller="forecast-validation">
               <% forecast = Forecast.find_by(spot: spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>
               <% if spot.validated?(current_user) %>
-                <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
+                <span>J'y suis et je valide cette météo</span><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
               <% else %>
-                <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
+                <span>J'y suis et je valide cette météo</span><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
               <% end %>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -27,6 +27,20 @@
           <% else %>
             <li id="day-today">Aujourd'hui</li>
           <% end %>
+        <% end %>
+  </div>
+  <div class="conditions-phrase">
+    <%= @conditions %>
+  </div>
+
+  <%# <div class="day-container"> %>
+  <ul class="day-list">
+    <% (0..2).each do |d|%>
+      <% if DateTime.now.to_date + d == @current_date %>
+        <% if d == 1 %>
+          <li id="day-today">Demain</li>
+        <% elsif d == 2 %>
+          <li id="day-today">Après-demain</li>
         <% else %>
           <li>
             <%= (link_to "Aujourd'hui", spot_path(@spot, date: d), id: "day-link") if d == 0 %>
@@ -54,6 +68,7 @@
           <% end %>
         <% end %>
       <% end %>
+<<<<<<< HEAD
     </ul>
     <div class= "card-forecast-container" id="content">
       <div class="big-card">
@@ -65,14 +80,53 @@
             <h6 id="wavedesc">Hauteur des vagues</h6>
             <p id="waveh"><%= @minimal_forecats[2].round(1) %> m</p>
           </div>
+=======
+    <% end %>
+  </ul>
+  <div class= "card-forecast-container" id="content">
+    <% if DateTime.now.to_date == @current_date %>
+      <div class="weather-ok">
+        <div>
+          <p><em>J'y suis et je valide cette météo </em></p>
+        </div>
+        <div data-controller="forecast-validation">
+          <% forecast = Forecast.find_by(spot: @spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>
+          <% if @spot.validated?(current_user) %>
+            <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
+          <% else %>
+            <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="big-card">
+      <div class="wave-height" style="background-image: url('<%= image_path("vagues_better.jpg")%>')">
+        <%# <div>
+          <img class="wave-image" src="https://cdn-icons-png.flaticon.com/512/3313/3313341.png" alt="">
+        </div> %>
+        <div>
+          <h6 id="wavedesc">Hauteur des vagues</h6>
+          <p id="waveh"><%= @minimal_forecats[2].round(1) %> m</p>
+>>>>>>> master
         </div>
 
+<<<<<<< HEAD
         <div class="wave-temperature">
           <div id= "temperature">
             <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
+=======
+      <div class="wave-temperature">
+        <div class= "temperature">
+          <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
+        </div>
+        <div class="clouds">
+          <div>
+            <h6 id="forecast-title">Couverture nuageuse</h6>
+>>>>>>> master
           </div>
           <div class="clouds">
             <div>
+<<<<<<< HEAD
               <h6 id="forecast-title">Couverture nuageuse</h6>
             </div>
             <div class="icon-forecast">
@@ -82,10 +136,17 @@
               <div id="forecast-mesure">
                 <p><%= @minimal_forecats[1] %>%</p>
               </div>
+=======
+              <img src=<%= image_path("cloudy-day.jpg")%> id="clouds" alt="">
+            </div>
+            <div id="forecast-mesure">
+              <p><%= @minimal_forecats[1].round %>%</p>
+>>>>>>> master
             </div>
           </div>
         </div>
       </div>
+<<<<<<< HEAD
     <div class="card-grid-forecast">
     <% @all_forecast.each do |key, value| %>
     <% unless key == :wave_height %>
@@ -101,18 +162,38 @@
             <% else %>
               <p> <%=  value %> <%=  @units[key] %></p>
             <% end %>
+=======
+    </div>
+  <div class="card-grid-forecast">
+  <% @all_forecast.each do |key, value| %>
+  <% unless key == :wave_height %>
+    <% if @user[key] %>
+      <div class="card-product forecast">
+      <h2><%= @label_forecast[key] %></h2>
+        <div class="card-product-infos">
+         <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
+          <% if key.to_s.include?("direction") %>
+          <div class="direction-forecast">
+              <p><i class="fas fa-arrow-down ml-3"></i></p>
+>>>>>>> master
           </div>
         </div>
       <% end %>
       <% end %>
     <% end %>
+<<<<<<< HEAD
     <%# </div> %>
+=======
+  <% end %>
+  </div>
+>>>>>>> master
 
     <div class="btn-criteria">
       <div>
         <p id="button-criteria" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</p>
       </div>
     </div>
+<<<<<<< HEAD
     <%# </div> %>
 
   <div class="container">
@@ -154,6 +235,337 @@
       </div>
     </div>
     </div>
+=======
+  </div>
+</div>
+
+<div class="container pt-0">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modifier mes préférences</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h1>Mes critères personnalisés</h1>
+
+    <div class="form-container">
+     <div class="form-container" data-controller="check-all">
+    <input type="checkbox" data-action="click->check-all#checkUncheck" data-check-all-target="mainCheck" name="cheese">
+    <label for="cheese">Tout sélectionner</label>
+    <hr>
+    <%= simple_form_for @user, html: { data: { check_all_target: "form" }} do |f| %>
+      <div class="box-edit-flexx">
+        <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
+        <div data-toggle="modal" data-target="#current_direction">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
+        <div data-toggle="modal" data-target="#current_speed">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
+        <div data-toggle="modal" data-target="#swell_direction">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
+        <div data-toggle="modal" data-target="#swell_height">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
+        <div data-toggle="modal" data-target="#water_temperature">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
+        <div data-toggle="modal" data-target="#wave_direction">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
+        <div data-toggle="modal" data-target="#wave_period">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
+        <div data-toggle="modal" data-target="#wind_wave_height">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
+        <div data-toggle="modal" data-target="#wind_direction">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
+        <div data-toggle="modal" data-target="#wind_speed">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :gust, as: :boolean, label: "Rafales" %>
+        <div data-toggle="modal" data-target="#gust">
+          <i class="fas fa-info-circle ml-3"></i>
+        </div>
+      </div>
+      <div class="box-edit-flexx">
+        <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
+        <div data-toggle="modal" data-target="#precipitation">
+          <i class="fas fa-info-circle ml-3"></i>
+        <%= f.hidden_field :spot_id, :value => @spot.id %>
+        </div>
+      </div>
+      <div class="text-center mb-3">
+        <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="swell_direction" tabindex="-1" role="dialog" aria-labelledby="swell_directionLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="swell_directionlLabel">Direction de la houle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        La houle est un onde créer par une dépression au dessus de l'ocean. Lorsque la houle entre en colision avec les côte elle est alors appelé "vague".
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="current_direction" tabindex="-1" role="dialog" aria-labelledby="current_directionLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="current_directionlLabel">Direction du courant</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        En surf le courant est certe dangereux, mais jamais mortel si vous rester avec votre planche.
+        Cette données vous permet de savoir de quel côté vous allez être déporté
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="current_speed" tabindex="-1" role="dialog" aria-labelledby="current_speedLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="current_speedlLabel">Vitesse du courant</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        En surf le courant est certe dangereux, mais jamais mortel si vous rester avec votre planche.
+        Cette donnée est importante pour savoir si vous allez devoir ramer toute la journée pour rester sur place ou pas.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="swell_height" tabindex="-1" role="dialog" aria-labelledby="swell_heightLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="swell_heightlLabel">Hauteur de la houle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        La houle est un onde créer par une dépression au dessus de l'ocean. Lorsque la houle entre en colision avec les côte elle est alors appelé "vague".
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="water_temperature" tabindex="-1" role="dialog" aria-labelledby="water_temperatureLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="water_temperaturelLabel">Température de l'eau</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Important d'etre préparer mentalement au choque thermique
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="wave_direction" tabindex="-1" role="dialog" aria-labelledby="wave_directionLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wave_directionlLabel">Direction de vagues</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Cette direction représente l'angle (en °). Plus cet angle est perpendiculaire à la côte, moins il y aura de pertes dans la taille des vagues.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="wave_period" tabindex="-1" role="dialog" aria-labelledby="wave_periodLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wave_periodlLabel">La Période</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        La période est le temps (en s) entre chaque vague. Une petite période signifie que la vague aura peu de temps pour se former et dérouler correctement.
+        Une grande période (12s), elle provoquera des vagues qui ferment à droite comme à gauche.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="wind_wave_height" tabindex="-1" role="dialog" aria-labelledby="wind_wave_heightLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wind_wave_heightlLabel">Hauteur des vagues de vent</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Hauteur des vagues de vent
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="wind_direction" tabindex="-1" role="dialog" aria-labelledby="wind_directionLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wind_directionlLabel">Direction du vent</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        La direction du vent est un facteur crutial pour une bonne session. Un vent venant des terres creusera la vague, tandis
+        q'un vent venant de la mer écrasera les vagues
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="wind_speed" tabindex="-1" role="dialog" aria-labelledby="wind_speedLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wind_speedlLabel">Vitesse du vent</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Le vent est un paramètre très important pour le surf. Il est important de coupler cette information avec la direction du vent.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="gust" tabindex="-1" role="dialog" aria-labelledby="gustLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gustlLabel">Les Rafales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Les rafales sont de brèves bourasques, souvent plus puissantes que le vent souflant en continue.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="precipitation" tabindex="-1" role="dialog" aria-labelledby="precipitationLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="precipitationlLabel">Précipations</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        La precipitaion (kg/m²) est un bon indicateur sur l'agitaion de l'ocean
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+>>>>>>> master
 
   </div>
 </div>
