@@ -1,7 +1,10 @@
 <div class="container">
   <h1>Mes préférences</h1>
-  <div class="form-container">
-    <%= simple_form_for @user do |f| %>
+  <div class="form-container" data-controller="check-all">
+    <input type="checkbox" data-action="click->check-all#checkUncheck" data-check-all-target="mainCheck" name="cheese">
+    <label for="cheese">Tout sélectionner</label>
+    <hr>
+    <%= simple_form_for @user, html: { data: { check_all_target: "form" }} do |f| %>
       <div class="box-edit-flexx">
         <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
         <div data-toggle="modal" data-target="#current_direction">
