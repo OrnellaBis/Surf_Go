@@ -18,13 +18,13 @@ class SpotsController < ApplicationController
     else
       @spots = Spot.all
     end
-    
+
     @markers = @spots.map do |spot|
       {
         lat: spot.latitude,
         lng: spot.longitude,
         # image_url: ('images/planche')
-        image_url: helpers.asset_url('planche')
+        image_url: helpers.asset_url('planche.png')
       }
     end
 
@@ -63,7 +63,7 @@ class SpotsController < ApplicationController
 
 
     @all_forecast = @forecast.all_attributes
-      
+
     @conditions = @forecast.surfing_condition
 
   end
