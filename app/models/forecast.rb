@@ -53,7 +53,6 @@ class Forecast < ApplicationRecord
       wind_speed: wind_speed,
       gust: gust,
       precipitation: precipitation,
-      uv_index: uv_index
     }
   end
 
