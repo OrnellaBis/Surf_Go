@@ -14,8 +14,9 @@
         <% end %>
   </div>
   <div class="conditions-phrase">
-    <%= @conditions %> <%= @validate %>
+    <%= @conditions %>
   </div>
+
   <%# <div class="day-container"> %>
   <ul class="day-list">
     <% (0..2).each do |d|%>
@@ -56,6 +57,21 @@
     <% end %>
   </ul>
   <div class= "card-forecast-container" id="content">
+    <% if DateTime.now.to_date == @current_date %>
+      <div class="weather-ok">
+        <div>
+          <p><em>J'y suis et je valide cette météo </em></p>
+        </div>
+        <div data-controller="forecast-validation">
+          <% forecast = Forecast.find_by(spot: @spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>
+          <% if @spot.validated?(current_user) %>
+            <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
+          <% else %>
+            <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <div class="big-card">
       <div class="wave-height" style="background-image: url('<%= image_path("vagues_better.jpg")%>')">
         <%# <div>
@@ -68,7 +84,7 @@
       </div>
 
       <div class="wave-temperature">
-        <div id= "temperature">
+        <div class= "temperature">
           <p id="temperature"><%= @minimal_forecats[0].round(1) %><span id="degree"> °C</span></p>
         </div>
         <div class="clouds">
@@ -77,10 +93,10 @@
           </div>
           <div class="icon-forecast">
             <div>
-              <i class="fab fa-cloudflare"></i>
+              <img src=<%= image_path("cloudy-day.jpg")%> id="clouds" alt="">
             </div>
             <div id="forecast-mesure">
-              <p><%= @minimal_forecats[1] %>%</p>
+              <p><%= @minimal_forecats[1].round %>%</p>
             </div>
           </div>
         </div>
@@ -90,7 +106,7 @@
   <% @all_forecast.each do |key, value| %>
   <% unless key == :wave_height %>
     <% if @user[key] %>
-      <div class="card-product forecast mt-2">
+      <div class="card-product forecast">
       <h2><%= @label_forecast[key] %></h2>
         <div class="card-product-infos">
          <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
@@ -106,14 +122,14 @@
     <% end %>
     <% end %>
   <% end %>
-  <%# </div> %>
+  </div>
 
   <div class="btn-criteria">
     <div>
       <p id="button-criteria" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</p>
     </div>
   </div>
-  <%# </div> %>
+</div>
 
 <div class="container">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
