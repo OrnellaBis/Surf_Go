@@ -14,7 +14,11 @@
             <div class="card-product-infos">
               <div>
                 <h2><%= spot.city_name %></h2>
-                <p><%= spot.current_condition %></p>
+                <% if spot.current_forecast.is_validate? %>
+                  <p>Les surfeurs ont validé cette météo!</p>
+                <% else %>
+                  <p><%= spot.current_condition %></p>
+                <% end %>
               </div>
               <div class="favorite-spot">
                 <%= link_to spot_favorite_spots_path(spot, page: "index"), method: :post, data: { action: 'click->spots#favorite', spot_id: spot.id } do %>
