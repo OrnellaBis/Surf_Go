@@ -44,7 +44,7 @@
           <% if h == @current_hour %>
             <li id="current-hour"><%= "#{h}h" %></li>
           <% else %>
-            <li class="hour-list"> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]), id: "hour-link"  %></li>
+            <li class="hour-list"> <%= link_to "#{h}h", spot_path(@spot, time: h, date: params[:date]), id: "hour-link", data: {turbolinks: "false"} %></li>
           <% end %>
         <% end %>
       <% else %>
