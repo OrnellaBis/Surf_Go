@@ -11,7 +11,9 @@
                 <h2><%= favoritespot.spot.city_name %></h2>
                 <p><%= favoritespot.spot.current_condition %></p>
               </div>
-              <i class="fas fa-trash-alt pl-1 delete-icon"></i>
+              <%= link_to favorite_spot_path(favoritespot.id), method: :delete do %>
+                <i class="fas fa-trash-alt pl-1 delete-icon"></i>
+              <% end %>
             </div>
             <div data-controller="forecast-validation" >
               <% forecast = Forecast.find_by(spot: favoritespot.spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>

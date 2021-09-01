@@ -15,7 +15,8 @@ class FavoriteSpotsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { liked: FavoriteSpot.find_by(user: @user, spot: @spot).nil? } }
+      format.json { render json: { liked: !FavoriteSpot.find_by(user: @user, spot: @spot).nil? } }
+      format.html {redirect_to spot_path(@spot) }
     end
   end
 
