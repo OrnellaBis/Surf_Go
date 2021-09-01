@@ -7,13 +7,16 @@ class FavoriteSpotsController < ApplicationController
     @user = current_user
     @spot = Spot.find(params[:spot_id])
     @favoritespot = FavoriteSpot.find_by(user: @user, spot: @spot)
+
     if @favoritespot
       @favoritespot.destroy
     else
-      FavoriteSpot.create(user: @user, spot: @spot)
+      @favoritespot = FavoriteSpot.create(user: @user, spot: @spot)
     end
-    redirect_to request.referrer
 
+    respond_to do |format|
+      format.json { render json: { liked: FavoriteSpot.find_by(user: @user, spot: @spot).nil? } }
+    end
   end
 
   def destroy
