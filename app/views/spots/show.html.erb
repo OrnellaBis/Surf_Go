@@ -121,10 +121,17 @@
       <div class="card-product forecast">
       <h2><%= @label_forecast[key] %></h2>
         <div class="card-product-infos">
+
+        <% if key == :wind_direction %>
+        <%# <p class="wind-direction" style="background-image: url(= image_url("forecast/#{key}.jpg"))">N.E</p>%>
+        <p class="wind-direction">N.E</p>
+        <% end %>
+        <% if key != :wind_direction %>
          <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
+        <% end %>
           <% if key.to_s.include?("direction") %>
           <div class="direction-forecast">
-              <p><i class="fas fa-arrow-down ml-3"></i></p>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i></p>
           </div>
           <% else %>
             <p> <%=  value %> <%=  @units[key] %></p>
