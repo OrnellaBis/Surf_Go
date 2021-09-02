@@ -13,7 +13,7 @@ require 'rest-client'
   #       {
   #         lat: Spot.first.latitude,
   #         lng: Spot.first.longitude,
-  #         params: "waterTemperature"
+  #         params: "waveDirection"
   #       }
   #   }
   # )
@@ -67,7 +67,7 @@ num = 0
   swell_direction = hour["swellDirection"]["dwd"]
   swell_height = hour["swellHeight"]["dwd"]
   water_temperature = hour["waterTemperature"]["meto"]
-  wave_direction = hour["waveDirection"]["meto"]
+  wave_direction = hour["waveDirection"]["meteo"]
   wave_height = hour["waveHeight"]["dwd"]
   wave_period = hour["wavePeriod"]["icon"]
   wind_wave_height = hour["windWaveHeight"]["dwd"]
