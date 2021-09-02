@@ -35,6 +35,7 @@ import { toggleSpot } from "../components/toggle_spot_index";
 import { swipeSides } from "../components/show-swipe-sides";
 import { scrollIntoHour } from "../components/show-scroll";
 
+
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAlgolia();

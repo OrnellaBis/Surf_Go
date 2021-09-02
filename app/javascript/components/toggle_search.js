@@ -16,7 +16,6 @@ const toggleSearch = () => {
     event.currentTarget.classList.toggle("active");
     searchBar.style.display = 'none';
     iconList.style.display = 'flex';
-    console.log("j'ai touchééo")
     
     // je remove la classe active sur navbar-down
   })

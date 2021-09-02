@@ -66,14 +66,14 @@
     <% if DateTime.now.to_date == @current_date %>
       <div class="weather-ok">
         <div>
-          <p><em>J'y suis et je valide cette météo </em></p>
+          <p>J'y suis et je valide cette météo</p>
         </div>
         <div data-controller="forecast-validation">
           <% forecast = Forecast.find_by(spot: @spot, time: DateTime.now.in_time_zone('UTC').beginning_of_hour) %>
           <% if @spot.validated?(current_user) %>
             <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
           <% else %>
-            <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
+            <span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle circle-empty "></i></span>
           <% end %>
         </div>
       </div>
