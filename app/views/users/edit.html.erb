@@ -1,90 +1,86 @@
 <div class="container">
-  <h1>Mes préférences</h1>
+<h1>Mes préférences</h1>
   <div class="form-container" data-controller="check-all">
-    <input type="checkbox" data-action="click->check-all#checkUncheck" data-check-all-target="mainCheck" name="cheese">
-    <label for="cheese">Tout sélectionner</label>
+    <div class="form-check">
+      <input type="checkbox" class="toggle" data-action="click->check-all#checkUncheck" data-check-all-target="mainCheck" id="cheese">
+      <label for="cheese">Tout sélectionner</label>
+    </div>
     <hr>
     <%= simple_form_for @user, html: { data: { check_all_target: "form" }} do |f| %>
       <div class="box-edit-flexx">
-        <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
+        <%= f.input :current_direction, as: :boolean, input_html: { class: "toggle" }, label: "Direction du courant" %>
         <div data-toggle="modal" data-target="#current_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
+        <%= f.input :current_speed, as: :boolean, input_html: { class: "toggle" }, label: "Vitesse du courant" %>
         <div data-toggle="modal" data-target="#current_speed">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
+        <%= f.input :swell_direction, as: :boolean, input_html: { class: "toggle" }, label: "Direction de la houle" %>
         <div data-toggle="modal" data-target="#swell_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
+        <%= f.input :swell_height, as: :boolean, input_html: { class: "toggle" }, label: "Hauteur de houle" %>
         <div data-toggle="modal" data-target="#swell_height">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
+        <%= f.input :water_temperature, as: :boolean, input_html: { class: "toggle" }, label: "Température de l'eau" %>
         <div data-toggle="modal" data-target="#water_temperature">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
+        <%= f.input :wave_direction, as: :boolean, input_html: { class: "toggle" }, label: "Direction des vagues" %>
         <div data-toggle="modal" data-target="#wave_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
+        <%= f.input :wave_period, as: :boolean, input_html: { class: "toggle" }, label: "Fréquence des vagues" %>
         <div data-toggle="modal" data-target="#wave_period">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
-        <div data-toggle="modal" data-target="#wind_wave_height">
-          <i class="fas fa-info-circle ml-3"></i>
-        </div>
-      </div>
-      <div class="box-edit-flexx">
-        <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
+        <%= f.input :wind_direction, as: :boolean, input_html: { class: "toggle" },  label: "Direction du vent" %>
         <div data-toggle="modal" data-target="#wind_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
+        <%= f.input :wind_speed, as: :boolean, input_html: { class: "toggle" }, label: "Vitesse du vent" %>
         <div data-toggle="modal" data-target="#wind_speed">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :gust, as: :boolean, label: "Rafales" %>
+        <%= f.input :gust, as: :boolean, input_html: { class: "toggle" }, label: "Rafales" %>
         <div data-toggle="modal" data-target="#gust">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
+        <%= f.input :precipitation, as: :boolean, input_html: { class: "toggle" }, label: "Précipitation" %>
         <div data-toggle="modal" data-target="#precipitation">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="text-center mb-3">
-        <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
+        <%= f.submit "Valider mes critères", class: "btn-criteria button-criteria border-0" %>
       </div>
     <% end %>
   </div>
 </div>
 
-      
+
 
 <!-- Modal -->
 <div class="modal fade" id="swell_direction" tabindex="-1" role="dialog" aria-labelledby="swell_directionLabel" aria-hidden="true">
@@ -100,7 +96,7 @@
         La houle est un onde créer par une dépression au dessus de l'ocean. Lorsque la houle entre en colision avec les côte elle est alors appelé "vague".
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -115,11 +111,11 @@
         </button>
       </div>
       <div class="modal-body">
-        En surf le courant est certe dangereux, mais jamais mortel si vous rester avec votre planche. 
+        En surf le courant est certe dangereux, mais jamais mortel si vous rester avec votre planche.
         Cette données vous permet de savoir de quel côté vous allez être déporté
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -134,11 +130,11 @@
         </button>
       </div>
       <div class="modal-body">
-        En surf le courant est certe dangereux, mais jamais mortel si vous rester avec votre planche. 
+        En surf le courant est certe dangereux, mais jamais mortel si vous rester avec votre planche.
         Cette donnée est importante pour savoir si vous allez devoir ramer toute la journée pour rester sur place ou pas.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -156,7 +152,7 @@
         La houle est un onde créer par une dépression au dessus de l'ocean. Lorsque la houle entre en colision avec les côte elle est alors appelé "vague".
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -174,7 +170,7 @@
         Important d'etre préparer mentalement au choque thermique
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -192,7 +188,7 @@
         Cette direction représente l'angle (en °). Plus cet angle est perpendiculaire à la côte, moins il y aura de pertes dans la taille des vagues.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -211,7 +207,7 @@
         Une grande période (12s), elle provoquera des vagues qui ferment à droite comme à gauche.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -229,7 +225,7 @@
         Hauteur des vagues de vent
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -248,7 +244,7 @@
         q'un vent venant de la mer écrasera les vagues
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -266,7 +262,7 @@
         Le vent est un paramètre très important pour le surf. Il est important de coupler cette information avec la direction du vent.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -284,7 +280,7 @@
         Les rafales sont de brèves bourasques, souvent plus puissantes que le vent souflant en continue.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -302,7 +298,7 @@
         La precipitaion (kg/m²) est un bon indicateur sur l'agitaion de l'ocean
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

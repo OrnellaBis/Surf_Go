@@ -1,0 +1,48 @@
+.card-beach {
+  overflow: hidden;
+  // height: 120px;
+  background: white;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+
+.title-heart {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-beach h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: $dark_blue;
+  margin-bottom: 12px;
+}
+
+.card-beach h6 {
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.card-beach-infos p {
+  font-size: 18px;
+  color: $dark_blue;
+}
+
+.validate-conditions {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    color: $blue;
+    font-size: 18px;
+  }
+  i {
+    color: $blue;
+  }
+}
