@@ -13,7 +13,8 @@
   text-align: center;
   font-size: larger;
   opacity: 0.8;
-  height: 5vh;
+  height: 6vh;
+  padding-top: 5px;
   background-color: white;
   // overflow-x: auto;
   overflow: scroll;
@@ -43,18 +44,19 @@ li {
 }
 
 .day-list {
-  padding-top: 5px;
-  padding-bottom: 5px;
   text-align: center;
-  background: rgba(33, 158, 188, .1);
+  background: transparent;
+  // background-color : rgba(255,255,255,0.7);
+  // background: rgba(33, 158, 188, .1);
   margin-bottom: 2px;
   padding-top: 9px;
   padding-bottom: 8px;
+  padding-left: 0;
 }
 
 .card-forecast-container {
   padding: 15px;
-  background: rgba(33, 158, 188, .1);
+  // background: rgba(33, 158, 188, .1);
 
 }
 
@@ -89,18 +91,19 @@ li {
   padding-left: 10%;
   height: 50px;
   color: $blue;
-  margin-bottom: 16px;
   font-size: 18px;
+  margin-bottom: 10px;
+  color: $blue;
 }
 
 #day-today {
-  font-size: 20px;
+  font-size: 21px;
   color: $dark_blue;
 }
 
 #day-link {
-  font-size: 16px;
-  color: $light_blue;
+  font-size: 18px;
+  color: $blue;
 }
 
 #current-hour {
@@ -118,7 +121,7 @@ li {
 .weather-ok {
   display: flex;
   justify-content: space-around;
-  color: $light_blue;
+  color: $blue;
   font-size: 20px;
 }
 
@@ -128,5 +131,10 @@ li {
 }
 
 .circle-empty {
-  color: $light_blue;
+  color: $blue;
+}
+
+.background-show {
+  background-image: url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzd8fHdhdmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80');
+  background-size: cover;
 }

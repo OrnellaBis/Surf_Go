@@ -1,4 +1,4 @@
-<%# <div class="container"> %>
+<div class="background-show">
   <div class="add-favorite-spot">
     <h1 class="city-show"><%= @spot.city_name %></h1>
     <%= link_to spot_favorite_spots_path(@spot), method: :post do %>
@@ -154,89 +154,84 @@
           </button>
         </div>
         <div class="modal-body">
-          <h1>Mes critères personnalisés</h1>
 
     <div class="form-container">
      <div class="form-container" data-controller="check-all">
-    <input type="checkbox" data-action="click->check-all#checkUncheck" data-check-all-target="mainCheck" name="cheese">
-    <label for="cheese">Tout sélectionner</label>
+      <div class="form-check">
+        <input type="checkbox" class="toggle" data-action="click->check-all#checkUncheck" data-check-all-target="mainCheck" id="milk">
+        <label for="milk">Tout sélectionner</label>
+      </div>
     <hr>
     <%= simple_form_for @user, html: { data: { check_all_target: "form" }} do |f| %>
       <div class="box-edit-flexx">
-        <%= f.input :current_direction, as: :boolean, label: "Direction du courant" %>
+        <%= f.input :current_direction, as: :boolean, label: "Direction du courant", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#current_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant" %>
+        <%= f.input :current_speed, as: :boolean, label: "Vitesse du courant", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#current_speed">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle" %>
+        <%= f.input :swell_direction, as: :boolean, label: "Direction de la houle", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#swell_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle" %>
+        <%= f.input :swell_height, as: :boolean, label: "Hauteur de houle", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#swell_height">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" %>
+        <%= f.input :water_temperature, as: :boolean, label: "Température de l'eau" , input_html: { class: "toggle" }%>
         <div data-toggle="modal" data-target="#water_temperature">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues" %>
+        <%= f.input :wave_direction, as: :boolean, label: "Direction des vagues", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#wave_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues" %>
+        <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#wave_period">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wind_wave_height, as: :boolean, label: "Hauteur des vagues au vent" %>
-        <div data-toggle="modal" data-target="#wind_wave_height">
-          <i class="fas fa-info-circle ml-3"></i>
-        </div>
-      </div>
-      <div class="box-edit-flexx">
-        <%= f.input :wind_direction, as: :boolean, label: "Direction du vent" %>
+        <%= f.input :wind_direction, as: :boolean, label: "Direction du vent", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#wind_direction">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent" %>
+        <%= f.input :wind_speed, as: :boolean, label: "Vitesse du vent", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#wind_speed">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :gust, as: :boolean, label: "Rafales" %>
+        <%= f.input :gust, as: :boolean, label: "Rafales", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#gust">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :precipitation, as: :boolean, label: "Précipitation" %>
+        <%= f.input :precipitation, as: :boolean, label: "Précipitation" , input_html: { class: "toggle" }%>
         <div data-toggle="modal" data-target="#precipitation">
           <i class="fas fa-info-circle ml-3"></i>
         <%= f.hidden_field :spot_id, :value => @spot.id %>
         </div>
       </div>
       <div class="text-center mb-3">
-        <%= f.submit "Valider mes critères", class: "btn btn-dark" %>
+        <%= f.submit "Valider mes critères", class: "btn-criteria button-criteria border-0" %>
       </div>
     <% end %>
   </div>
@@ -471,4 +466,6 @@
 </div>
 
 </div>
+</div>
+
 </div>
