@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container container-width">
   <div class="fav-spots">
-    <h1 class="text-center">Vos spots préférés</h1>
-    <div class="py-4 px-3">
+    <h1 class="text-center city-spot">Vos spots préférés</h1>
+    <div class="py-4 px-3 container-blue">
       <% @favoritespots.each do |favoritespot| %>
         <%= link_to spot_path(favoritespot.spot_id) do %>
           <div class="card-product">
@@ -26,7 +26,7 @@
               <% if favoritespot.spot.validated?(current_user) %>
                 <span>J'y suis et je valide cette météo</span><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="fas fa-check-circle "></i></span>
               <% else %>
-                <span>J'y suis et je valide cette météo</span><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle "></i></span>
+                <span>J'y suis et je valide cette météo</span><span  data-forecast-validation-target="iconContainer" data-action="click->forecast-validation#validate"> <i href="<%= forecast_validation_forecasts_path(forecast) %>" class="far fa-check-circle circle-empty "></i></span>
               <% end %>
             </div>
           </div>
