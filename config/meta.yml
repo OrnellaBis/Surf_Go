@@ -1,0 +1,5 @@
+meta_product_name: "SurfGo"
+meta_title: "SurfGo - Trouvez les meilleures vagues !"
+meta_description: "Cette application a été créer pour aider les jeunes surfer a mieux comprendre les informations météorologique"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@Fatzy7"   # required for Twitter Cards
