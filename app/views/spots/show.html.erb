@@ -16,7 +16,7 @@
   <div class="conditions-phrase">
 
     <% if @validate %>
-      <p>Les surfeurs ont validé cette météo!</p>
+      <p>Les surfeurs ont validé cette météo !</p>
     <% else %>
       <%= @conditions %>
     <% end %>
@@ -119,12 +119,41 @@
   <% unless key == :wave_height %>
     <% if @user[key] %>
       <div class="card-product forecast">
+      <% if @label_forecast[key] == nil %>
+      <p>N/A</p>
+      <% else %>
       <h2><%= @label_forecast[key] %></h2>
+      <% end %>
         <div class="card-product-infos">
+
+        <%# <% if key == :wind_direction %>
+        <%# <p class="wind-direction" style="background-image: url(= image_url("forecast/#{key}.jpg"))">N.E</p>%>
+        <%# <p class="wind-direction"></p> %>
+        <%# <% end %>
+        <%# <% if key != :wind_direction %>
+        <%# <% end %>
          <%= image_tag("forecast/#{key}.jpg", class: "forecast-icon")%>
           <% if key.to_s.include?("direction") %>
           <div class="direction-forecast">
-              <p><i class="fas fa-arrow-down ml-3"></i></p>
+             <% if value == 0  %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> S</p>
+            <% elsif value.nil? %>
+              <p>N/A</p>
+            <% elsif value > 0 && value < 90 %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> S.O</p>
+            <% elsif value == 90 %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> O</p>
+            <% elsif value > 90 && value < 180 %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> N.O</p>
+            <% elsif value == 180  %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> N</p>
+            <% elsif value > 180 && value < 270 %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> N.E</p>
+            <% elsif value == 270 %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> E</p>
+            <% else value > 270 %>
+              <p><i class="fas fa-arrow-down ml-3" style="transform: rotate(<%= value %>deg);"></i> S.E</p>
+            <% end %>
           </div>
           <% else %>
             <p> <%=  value %> <%=  @units[key] %></p>
@@ -253,7 +282,7 @@
         La houle est un onde créer par une dépression au dessus de l'ocean. Lorsque la houle entre en colision avec les côte elle est alors appelé "vague".
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -272,7 +301,7 @@
         Cette données vous permet de savoir de quel côté vous allez être déporté
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -291,7 +320,7 @@
         Cette donnée est importante pour savoir si vous allez devoir ramer toute la journée pour rester sur place ou pas.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -309,7 +338,7 @@
         La houle est un onde créer par une dépression au dessus de l'ocean. Lorsque la houle entre en colision avec les côte elle est alors appelé "vague".
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -327,7 +356,7 @@
         Important d'etre préparer mentalement au choque thermique
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -345,7 +374,7 @@
         Cette direction représente l'angle (en °). Plus cet angle est perpendiculaire à la côte, moins il y aura de pertes dans la taille des vagues.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -364,7 +393,7 @@
         Une grande période (12s), elle provoquera des vagues qui ferment à droite comme à gauche.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -382,7 +411,7 @@
         Hauteur des vagues de vent
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -397,11 +426,11 @@
         </button>
       </div>
       <div class="modal-body">
-        La direction du vent est un facteur crutial pour une bonne session. Un vent venant des terres creusera la vague, tandis
-        q'un vent venant de la mer écrasera les vagues
+        La direction du vent est un facteur crucial pour une bonne session de surf. Un vent venant des terres creusera la vague (vent offshore, le meilleur pour les surfeurs), tandis
+        qu'un vent venant de la mer écrasera les vagues (onshore :( ).
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -419,7 +448,7 @@
         Le vent est un paramètre très important pour le surf. Il est important de coupler cette information avec la direction du vent.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -428,16 +457,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="gustlLabel">Les Rafales</h5>
+        <h5 class="modal-title" id="gustlLabel">Les rafales</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Les rafales sont de brèves bourasques, souvent plus puissantes que le vent souflant en continue.
+        Les rafales sont de brèves bourrasques, souvent plus puissantes que le vent soufflant en continu.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -452,10 +481,10 @@
         </button>
       </div>
       <div class="modal-body">
-        La precipitaion (kg/m²) est un bon indicateur sur l'agitaion de l'ocean
+      Pluie ou neige.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-criteria" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-criteria button-criteria border-0" data-dismiss="modal">Close</button>
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
