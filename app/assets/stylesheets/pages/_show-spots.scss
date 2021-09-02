@@ -63,6 +63,8 @@ li {
   justify-content: center;
   align-items: center;
   padding-top: 8vh;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #white-heart {
@@ -117,10 +119,14 @@ li {
   display: flex;
   justify-content: space-around;
   color: $light_blue;
-  font-weight: bold;
   font-size: 20px;
 }
 
 .fa-check-circle {
   font-size: 25px;
+  color: $yellow;
+}
+
+.circle-empty {
+  color: $light_blue;
 }
