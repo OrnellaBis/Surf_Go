@@ -34,6 +34,8 @@ import "controllers"
 import { toggleSpot } from "../components/toggle_spot_index";
 import { swipeSides } from "../components/show-swipe-sides";
 import { scrollIntoHour } from "../components/show-scroll";
+import { swiperIndex } from "../components/index_swipe_vertical";
+
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -43,4 +45,5 @@ document.addEventListener('turbolinks:load', () => {
   toggleSpot();
   swipeSides();
   scrollIntoHour();
+  swiperIndex();
 })

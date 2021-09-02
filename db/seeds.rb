@@ -5,10 +5,26 @@ require 'rest-client'
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
+
+  # api_response = RestClient.get('https://api.stormglass.io/v2/weather/point',
+  #   headers={
+  #     'Authorization': 'c4623262-049d-11ec-ad82-0242ac130002-c46232ee-049d-11ec-ad82-0242ac130002',
+  #       params:
+  #       {
+  #         lat: Spot.first.latitude,
+  #         lng: Spot.first.longitude,
+  #         params: "waterTemperature"
+  #       }
+  #   }
+  # )
+
+  # data_forecast = JSON.parse(api_response)
+  # puts data_forecast
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 FavoriteSpot.destroy_all
+ValidationForecast.destroy_all
 Forecast.destroy_all
 User.destroy_all
 Spot.destroy_all
@@ -17,8 +33,8 @@ Spot.destroy_all
 filepath = 'db/spots.json'
 serialized_spot = File.read(filepath)
 data = JSON.parse(serialized_spot)
-
-(40..70).each do |i|
+num = 0
+(10..90).each do |i|
   city_name = data["data"]["spots"][i]["name"]
   latitude = data["data"]["spots"][i]["lat"]
   longitude = data["data"]["spots"][i]["lon"]
@@ -43,15 +59,15 @@ data = JSON.parse(serialized_spot)
 
   air_temperature = hour["airTemperature"]["dwd"]
   cloud_cover =  hour["cloudCover"]["dwd"]
-  current_direction = hour["currentDirection"]["meteo"]
-  current_speed = hour["currentSpeed"]["meteo"]
+  current_direction = hour["currentDirection"]["meto"]
+  current_speed = hour["currentSpeed"]["meto"]
   gust = hour["gust"]["dwd"]
   time = hour["time"].to_s.to_datetime
   precipitation = hour["precipitation"]["dwd"]
   swell_direction = hour["swellDirection"]["dwd"]
   swell_height = hour["swellHeight"]["dwd"]
-  water_temperature = hour["waterTemperature"]["meteo"]
-  wave_direction = hour["waveDirection"]["meteo"]
+  water_temperature = hour["waterTemperature"]["meto"]
+  wave_direction = hour["waveDirection"]["meto"]
   wave_height = hour["waveHeight"]["dwd"]
   wave_period = hour["wavePeriod"]["icon"]
   wind_wave_height = hour["windWaveHeight"]["dwd"]
@@ -62,6 +78,8 @@ data = JSON.parse(serialized_spot)
                           wind_direction: wind_direction, wind_speed: wind_speed, gust: gust, precipitation: precipitation, uv_index:0.8, spot: spot, time: time)
   forecast.save!
   end
+  num += 1
+  puts "Spot Created !! #{num}"
 end
 
 user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
