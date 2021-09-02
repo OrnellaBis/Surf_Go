@@ -14,6 +14,9 @@ export default class extends Controller {
     if (num === 12){
       this.mainCheckTarget.checked = true
     }
+    else {
+      this.mainCheckTarget.checked = false
+    }
   }
 
   checkUncheck() {
