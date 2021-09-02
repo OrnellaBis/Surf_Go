@@ -99,7 +99,13 @@
           </div>
           <div class="icon-forecast">
             <div>
+            <% if @minimal_forecats[1] >= 75 %>
+              <img src=<%= image_path("cloud.jpg")%> id="clouds" alt="">
+            <% elsif @minimal_forecats[1] >= 25 && @minimal_forecats[1] < 75 %>
               <img src=<%= image_path("cloudy-day.jpg")%> id="clouds" alt="">
+            <% else %>
+              <img src=<%= image_path("sunny.jpg")%> id="clouds" alt="">
+            <% end %>
             </div>
             <div id="forecast-mesure">
               <p><%= @minimal_forecats[1].round %>%</p>
