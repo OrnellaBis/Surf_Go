@@ -46,9 +46,6 @@
     color: $blue;
     font-size: 18px;
   }
-  i {
-    color: $blue;
-  }
 }
 
   .card-product .card-product-infos {
@@ -57,6 +54,8 @@
     align-items: center;
     justify-content: space-around;
     margin-top: 10px;
+    padding-top: 3px;
+    padding-bottom: 10px;
   }
 
 .card-grid-forecast {
@@ -68,11 +67,12 @@
     font-weight: normal;
     margin: 5px;
     text-align: center;
+    height: 22px;
   }
   p {
     font-size: 20px;
     padding: 1px;
-    margin: 2px;
+    margin: 1px;
   }
 }
 
@@ -81,6 +81,7 @@
   box-shadow: 0 2px 1px 0.5px #DFE6EC;
   margin: 0;
   padding: 7px;
+  height: 95px;
 }
 
 img.forecast-icon {
@@ -93,17 +94,17 @@ img.forecast-icon {
   opacity: 0.8;
 }
 
-// .wind-direction {
-//   position: relative;
-//   font-size: 10px;
-//   &:before {
-//     content: "";
-//     background-image: asset-url("forecast/wind_direction.jpg");
-//     background-size: contain;
-//     background-position: center;
-//     width: 50px;
-//     height: 50px;
-//     position: absolute;
-//     top: 0
-//   }
-// }
+.wind-direction {
+  position: relative;
+  font-size: 10px;
+  &:before {
+    content: "";
+    background-image: asset-url("forecast/wind_direction.jpg");
+    background-size: contain;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0
+  }
+}

@@ -9,6 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 
 
+
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -32,6 +34,9 @@ import "controllers"
 import { toggleSpot } from "../components/toggle_spot_index";
 import { swipeSides } from "../components/show-swipe-sides";
 import { scrollIntoHour } from "../components/show-scroll";
+import { swiperIndex } from "../components/index_swipe_vertical";
+
+
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
@@ -40,4 +45,5 @@ document.addEventListener('turbolinks:load', () => {
   toggleSpot();
   swipeSides();
   scrollIntoHour();
+  swiperIndex();
 })
