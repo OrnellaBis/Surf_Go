@@ -1,13 +1,20 @@
+
 .card-beach {
   overflow: hidden;
   // height: 120px;
   background: white;
-  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 1px 0.5px #dfe6ec;
   border-radius: 20px;
   margin-bottom: 20px;
   padding: 16px;
+  .fa-check-circle {
+    font-size: 25px;
+    color: $yellow;
+  }
+  .circle-empty {
+    color: $blue;
+  }
 }
-
 
 .title-heart {
   display: flex;
@@ -41,6 +48,7 @@
   p {
     color: $blue;
     font-size: 18px;
+    margin-bottom: 0;
   }
   i {
     color: $blue;
