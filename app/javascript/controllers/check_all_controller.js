@@ -11,7 +11,7 @@ export default class extends Controller {
         num += 1;
       }
     });
-    if (num === 12){
+    if (num === 11){
       this.mainCheckTarget.checked = true
     }
     else {
