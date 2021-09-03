@@ -101,7 +101,7 @@ class Forecast < ApplicationRecord
     if mark > 15
       return ["Sors ta planche, les vagues ici, c'est l'avalanche !", "THE spot to be, c'est la folie !"].sample
     elsif mark >= 10
-      return ["Des vagues en prévision, c'est le moment d'une petite session", "Les vagues sont cool, va y'avoir foule"].sample
+      return ["Des vagues en prévision, c'est le moment d'une petite session", "Les vagues sont cool, il va y avoir foule"].sample
     elsif mark < 10
       return ["Pas de vagues today, mais pour le paddle c'est peut-être ok", "Mer d'huile, c'est la tuile"].sample
     end

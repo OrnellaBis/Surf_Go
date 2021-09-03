@@ -165,9 +165,9 @@
   <% end %>
   </div>
 
-  <div class="btn-criteria">
+  <div >
     <div>
-      <p class="button-criteria" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</p>
+      <p class="button-criteria btn-criteria" data-toggle="modal", data-target="#exampleModal" >Personnaliser mes critères</p>
     </div>
   </div>
 </div>
@@ -229,7 +229,7 @@
         </div>
       </div>
       <div class="box-edit-flexx">
-        <%= f.input :wave_period, as: :boolean, label: "Fréquence des vagues", input_html: { class: "toggle" } %>
+        <%= f.input :wave_period, as: :boolean, label: "Période", input_html: { class: "toggle" } %>
         <div data-toggle="modal" data-target="#wave_period">
           <i class="fas fa-info-circle ml-3"></i>
         </div>
@@ -383,7 +383,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="wave_periodlLabel">La Période</h5>
+        <h5 class="modal-title" id="wave_periodlLabel">La période</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
