@@ -1,19 +1,18 @@
-.navbar-up {
-  margin-bottom: 10px;
-  background: transparent;
-}
-
 .logo-navbar {
   height: 70px;
 }
 
 .navbar-up {
+  margin-bottom: 10px;
+  background: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: absolute;
   width: 100%;
   padding-bottom: 5px;
+  z-index: 1;
+
 }
 
 .sign-in {
