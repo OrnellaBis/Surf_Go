@@ -23,3 +23,13 @@
 .hover-button {
   background: $blue;
 }
+
+.login-button {
+  background: $yellow;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 10px;
+  &:active {
+    background: rgba(214, 154, 3, 0.719)
+  }
+}
