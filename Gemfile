@@ -44,6 +44,13 @@ gem 'geocoder'
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
+
+# sidekiq
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+gem "sidekiq-cron", "~> 1.1"
+
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

@@ -1,0 +1,5 @@
+
+launch_job:
+  cron: '20 0 * * *'   # Runs once per minute
+  class: LaunchJob
+  queu: default

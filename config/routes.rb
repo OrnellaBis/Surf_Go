@@ -11,4 +11,12 @@ Rails.application.routes.draw do
   resources :forecasts, only:[:show] do
     resources :validation_forecasts, only: [:create]
   end
+
+  Rails.application.routes.draw do
+    # Sidekiq Web UI, only for admins.
+    require "sidekiq/web"
+    authenticate :user, ->(user) { user.admin? } do
+      mount Sidekiq::Web => '/sidekiq'
+    end
+  end
 end
