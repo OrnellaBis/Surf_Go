@@ -26,7 +26,6 @@ require 'rest-client'
 FavoriteSpot.destroy_all
 ValidationForecast.destroy_all
 Forecast.destroy_all
-User.destroy_all
 Spot.destroy_all
 
 
@@ -34,7 +33,7 @@ filepath = 'db/spots.json'
 serialized_spot = File.read(filepath)
 data = JSON.parse(serialized_spot)
 num = 0
-(10..90).each do |i|
+(40..90).each do |i|
   city_name = data["data"]["spots"][i]["name"]
   latitude = data["data"]["spots"][i]["lat"]
   longitude = data["data"]["spots"][i]["lon"]
@@ -81,8 +80,6 @@ num = 0
   num += 1
   puts "Spot Created !! #{num}"
 end
-
-user = User.create(first_name: "Brice", last_name:"De Nice", email:"surfT@mer.com", password: "coucou")
 
 
 # spot_1 = Spot.create(city_name:"Hossegor", latitude:43.69, longitude:-1.37)
