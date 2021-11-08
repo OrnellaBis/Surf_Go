@@ -1,14 +1,11 @@
 namespace :scheduled_tasks do
-  desc "This task is called by the Heroku scheduler add-on"
-  task :update_data => :environment do
-    puts "Cleaning up the DB..."
+  desc "Clean database"
+  task :seed_data => :environment do
+    CreateDailyForecast.new.clean
+  end
 
-    DatabaseCleaner[:redis].strategy = :truncation
-    DatabaseCleaner[:redis].clean
-
-    puts "Seeding the DB again.."
-    Rake::Task["db:seed"].invoke
-
-    puts "done"
+  desc "Seed database"
+  task :seed_data => :environment do
+    CreateDailyForecast.new.seed
   end
 end
