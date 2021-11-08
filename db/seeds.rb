@@ -1,1 +1,4 @@
-CreateDailyForecast.new.perform
+service = CreateDailyForecast.new
+
+service.clean
+service.seed
