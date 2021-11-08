@@ -32,6 +32,17 @@ rails db:migrate
 rails db:seed
 ```
 
+## Seed the database
+
+Run:
+
+```sh
+rails db:seed
+```
+
+If you have the error `RestClient::PaymentRequired: 402 Payment Required` you
+need to wait at least one day.
+
 ## Local
 
 ```sh
