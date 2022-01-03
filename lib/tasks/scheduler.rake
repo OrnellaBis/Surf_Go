@@ -3,8 +3,8 @@ namespace :scheduled_tasks do
   task :update_data => :environment do
     puts "Cleaning up the DB..."
 
-    DatabaseCleaner[:redis].strategy = :truncation
-    DatabaseCleaner[:redis].clean
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean
 
     puts "Seeding the DB again.."
     Rake::Task["db:seed"].invoke
